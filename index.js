@@ -47,7 +47,7 @@ console.log(z);
 z();*/
 
 
-function z() {
+/*function z() {
     var b = 900;
     function x() {
         var a = 7;
@@ -58,4 +58,37 @@ function z() {
     }
     x();
 }
-z();
+z();*/
+
+
+/*function x() {
+    
+    for(let i=1; i<=5; i++) {
+        setTimeout(function () {
+            console.log(i);
+        }, i * 1000);
+    }
+    
+    console.log("Namaste JavaScript");
+}
+
+x();*/
+
+
+function x() {
+    
+    for(var i=1; i<=5; i++) {
+
+        function close(y) {
+            setTimeout(function () {
+                console.log(y);
+            }, y * 1000);
+        }
+        close(i);
+        
+    }
+    
+    console.log("Namaste JavaScript");
+}
+
+x();

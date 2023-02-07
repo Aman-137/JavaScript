@@ -25,12 +25,11 @@ console.log(c);*/
     const a = 100;
     {
         const a = 200;
-        
+
     }
 
 }
 console.log(a)*/
-
 
 /*function x() {
     var a = 7;
@@ -46,7 +45,6 @@ console.log(z);
 
 z();*/
 
-
 /*function z() {
     var b = 900;
     function x() {
@@ -60,23 +58,21 @@ z();*/
 }
 z();*/
 
-
 /*function x() {
-    
+
     for(let i=1; i<=5; i++) {
         setTimeout(function () {
             console.log(i);
         }, i * 1000);
     }
-    
+
     console.log("Namaste JavaScript");
 }
 
 x();*/
 
+/*function x() {
 
-function x() {
-    
     for(var i=1; i<=5; i++) {
 
         function close(y) {
@@ -85,10 +81,69 @@ function x() {
             }, y * 1000);
         }
         close(i);
-        
+
     }
-    
+
     console.log("Namaste JavaScript");
 }
 
-x();
+x();*/
+
+/*function outest() {
+    var c = 20;
+    function outer(b) {
+        //var a = 10;
+        function inner() {
+            console.log(a, b, c)
+        }
+        let a = 10;
+        return inner;
+
+    }
+    return outer;
+}
+let a = 100;
+//outer()();
+var close = outest()("helloworld");
+close();*/
+
+
+/*function counter() {
+    var count = 0;
+
+    return function incrementCounter() {
+        count++;
+        console.log(count);
+    }
+
+}
+
+var counter1 = counter();
+counter1();
+counter1();
+
+var counter2 = counter();
+counter2();
+counter2();counter2();*/
+
+
+
+function Counter() {
+    var count = 0;
+
+    this.incrementCounter =  function () {
+        count++;
+        console.log(count);
+    }
+
+    this.decrementCounter =  function () {
+        count--;
+        console.log(count);
+    }
+
+}
+
+var counter1 = new Counter();
+counter1.incrementCounter();
+counter1.incrementCounter();
+counter1.decrementCounter();

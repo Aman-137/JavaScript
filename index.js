@@ -128,7 +128,7 @@ counter2();counter2();*/
 
 
 
-function Counter() {
+/*function Counter() {
     var count = 0;
 
     this.incrementCounter =  function () {
@@ -146,4 +146,16 @@ function Counter() {
 var counter1 = new Counter();
 counter1.incrementCounter();
 counter1.incrementCounter();
-counter1.decrementCounter();
+counter1.decrementCounter();*/
+
+
+function a() {
+    var x = 0, z = 10;
+    return function b() {
+        console.log(x);
+    }
+}
+
+var y = a();
+
+y();

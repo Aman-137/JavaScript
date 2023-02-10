@@ -149,7 +149,7 @@ counter1.incrementCounter();
 counter1.decrementCounter();*/
 
 
-function a() {
+/*function a() {
     var x = 0, z = 10;
     return function b() {
         console.log(x);
@@ -158,4 +158,50 @@ function a() {
 
 var y = a();
 
-y();
+y();*/
+
+
+/*
+//a();
+//b(); - this function invokation gives type error.
+
+// Function Statement aka Function Declaration
+
+function a() {
+    console.log("a called");
+}
+a();
+
+// Function Expression
+
+var b = function () {
+    console.log("b called");
+}
+b();
+
+// Anonymous Function - a function without any name
+
+//function () {
+
+//}
+
+// Named Function Expression (line 175)
+
+var b = function xyz() {
+    console.log(xyz);
+
+}
+
+b();
+xyz(); 
+*/
+
+// First Class Function - the ability to use function as values
+
+var b = function (param1) {
+    return function xyz() {
+
+    }
+}
+
+console.log(b());

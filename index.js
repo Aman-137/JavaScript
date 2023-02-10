@@ -107,7 +107,6 @@ let a = 100;
 var close = outest()("helloworld");
 close();*/
 
-
 /*function counter() {
     var count = 0;
 
@@ -125,8 +124,6 @@ counter1();
 var counter2 = counter();
 counter2();
 counter2();counter2();*/
-
-
 
 /*function Counter() {
     var count = 0;
@@ -148,7 +145,6 @@ counter1.incrementCounter();
 counter1.incrementCounter();
 counter1.decrementCounter();*/
 
-
 /*function a() {
     var x = 0, z = 10;
     return function b() {
@@ -159,7 +155,6 @@ counter1.decrementCounter();*/
 var y = a();
 
 y();*/
-
 
 /*
 //a();
@@ -193,11 +188,11 @@ var b = function xyz() {
 }
 
 b();
-xyz(); 
-*/
+xyz();
+
 
 // First Class Function - the ability to use function as values
-
+// Function are First class Citizens in JS (same thing)
 var b = function (param1) {
     return function xyz() {
 
@@ -205,3 +200,41 @@ var b = function (param1) {
 }
 
 console.log(b());
+*/
+
+/*
+//Callback function in JavaScript
+
+
+setTimeout(function () {
+    console.log("timer");
+}, 5000);
+
+
+function x(y) {
+    console.log("x");
+
+    y();
+}
+
+x(function y() {
+    console.log("y");
+})
+*/
+
+/* JavaScript is a synchronous and single threaded lang.
+Blocking the main thread - JS has a singhle call stack (ie; main thread)
+ we cannot block it by using long time taking function (or asynchronous operation);
+ but we can use callback function to do asynchronous operation. (just like above)*/
+
+// using the concept of closure or data hiding we can make it more secure.
+
+function attachEventListener() {
+    let count = 0;
+    document
+        .getElementById("clickMe")
+        .addEventListener("click", function xyz() {
+            console.log("Button Clicked", ++count);
+        });
+}
+attachEventListener();

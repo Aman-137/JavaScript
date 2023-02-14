@@ -226,15 +226,31 @@ x(function y() {
 Blocking the main thread - JS has a singhle call stack (ie; main thread)
  we cannot block it by using long time taking function (or asynchronous operation);
  but we can use callback function to do asynchronous operation. (just like above)*/
-
+/*
 // using the concept of closure or data hiding we can make it more secure.
 
 function attachEventListener() {
     let count = 0;
-    document
-        .getElementById("clickMe")
-        .addEventListener("click", function xyz() {
-            console.log("Button Clicked", ++count);
-        });
+    document.getElementById("clickMe")
+    .addEventListener("click", function xyz() {
+    console.log("Button Clicked", ++count);
+    });
 }
 attachEventListener();
+*/
+
+/*
+console.log("Start");
+
+setTimeout(function cb() {
+    console.log("Callback");
+}, 5000);
+
+console.log("End");*/
+
+console.log("Start");
+
+document.getElementById('clickMe').addEventListener("click", function cb() {
+    console.log("Callback");
+})
+console.log("End");

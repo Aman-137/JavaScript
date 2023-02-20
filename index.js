@@ -246,11 +246,118 @@ setTimeout(function cb() {
     console.log("Callback");
 }, 5000);
 
-console.log("End");*/
+console.log("End");
 
 console.log("Start");
 
 document.getElementById('clickMe').addEventListener("click", function cb() {
     console.log("Callback");
 })
-console.log("End");
+console.log("End"); */
+
+/*
+function add() {
+    let a;
+    a = 100;
+
+    if (typeof a != undefined) {
+        sum = a + 5;
+    }
+
+    return sum
+
+}
+let a = 20;
+console.log(a);
+const ans = add();
+console.log(ans);*/
+
+/*
+// trust issues with setTimeout()
+console.log("start");
+
+setTimeout(function cb() {
+    console.log("callback");
+}, 5000);
+
+console.log("end");
+// millions line of code (or blocking main thread)
+
+let startDate = new Date().getTime();
+let endDate = startDate;
+
+while (endDate < startDate + 10000) {
+    endDate = new Date().getTime();
+}
+
+console.log("while expires");*/
+
+// Functional Programming (Higher order function) Repeating line of code not a
+// good idea - follow DRY principle
+/*
+const radius = [3, 1, 2, 4]
+
+const calculateArea = function (radius) {
+    const output = [];
+    for (let i=0; i < radius.length; i++) {
+        output.push(Math.PI * radius[i] * radius[i]);
+    }
+    return output;
+}
+
+console.log(calculateArea(radius));
+
+
+const calculateCircumference = function (radius) {
+    const output = [];
+    for (let i=0; i < radius.length; i++) {
+        output.push(2 * (Math.PI * radius[i]));
+    }
+    return output;
+}
+
+console.log(calculateCircumference(radius));
+
+
+const calculateDiameter = function (radius) {
+    const output = [];
+    for (let i=0; i < radius.length; i++) {
+        output.push(2 * radius[i]);
+    }
+    return output;
+}
+
+console.log(calculateDiameter(radius));*/
+
+
+// Modular way
+
+const radius = [3, 1, 2, 4];
+
+const area = function (radius) {
+    return Math.PI * radius * radius;
+}
+
+const circumference = function (radius) {
+    return 2 * Math.PI * radius;
+}
+
+const diameter = function (radius) {
+    return 2 * radius;
+}
+
+const calculate = function (radius, logic) {
+    const output = [];
+    for (let i=0; i<radius.length; i++) {
+        output.push(logic(radius[i]));
+    }
+    return output;
+}
+
+
+console.log(calculate(radius, area));
+console.log(calculate(radius, circumference));
+console.log(calculate(radius, diameter));
+
+// Bonus..
+console.log(radius.map(area));

@@ -329,7 +329,7 @@ const calculateDiameter = function (radius) {
 
 console.log(calculateDiameter(radius));*/
 
-
+/*
 // Modular way
 
 const radius = [3, 1, 2, 4];
@@ -360,4 +360,93 @@ console.log(calculate(radius, circumference));
 console.log(calculate(radius, diameter));
 
 // Bonus..
-console.log(radius.map(area));
+console.log(radius.map(area));*/
+
+
+//map, reduce & filter
+/*
+//map
+const arr = [5, 1, 3, 2, 6]
+
+function double(x) {
+    return x * 2;
+}
+
+function triple(x) {
+    return x * 3;
+}
+
+function binary(x) {
+    return x.toString(2);
+}
+
+const output = arr.map(binary);
+
+console.log(output);
+
+//another way
+const output2 = arr.map((x) => x.toString(2));
+console.log(output2);
+
+// filter
+const arr = [5, 1, 3, 2, 6];
+
+function isOdd(x) {
+    return x % 2;
+}
+function greaterThan4(x) {
+    return x > 4;
+}
+
+const output = arr.filter(greaterThan4);
+
+console.log(output);
+
+
+//reduce
+const arr = [5, 1, 3, 2, 6];
+// normal way
+function findSum(arr) {
+    let sum = 0;
+    for(let i=0; i<arr.length; i++) {
+        sum += arr[i];
+    }
+    return sum;
+}
+
+console.log(findSum(arr));*/
+
+/*reduce method - reduce method takes two arguments 
+1st is a function to do the operation and 2nd is a value to be initiated for acc (accumaltor)
+The function takes two parameters 1st - acc(accumalor) and 2nd - curr (current value in arr)
+
+const output = arr.reduce(function(acc, curr) {
+    acc = acc + curr;
+    return acc;
+}, 0);
+
+console.log(output);*/
+
+const arr = [5, 1, 3, 2, 6];
+// normal way
+function findMax(arr) {
+    let maxm = 0;
+    for(let i=0; i<arr.length; i++) {
+        if (arr[i] > maxm) {
+            maxm = arr[i];
+        }
+    }
+    return maxm;
+}
+
+console.log(findMax(arr));
+
+// reduce method
+const output = arr.reduce(function (max, curr) {
+    if (curr > max) {
+        max = curr;
+    }
+    return max;
+}, 0);
+
+console.log(output);

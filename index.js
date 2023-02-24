@@ -362,7 +362,6 @@ console.log(calculate(radius, diameter));
 // Bonus..
 console.log(radius.map(area));*/
 
-
 //map, reduce & filter
 /*
 //map
@@ -416,7 +415,7 @@ function findSum(arr) {
 
 console.log(findSum(arr));*/
 
-/*reduce method - reduce method takes two arguments 
+/*reduce method - reduce method takes two arguments
 1st is a function to do the operation and 2nd is a value to be initiated for acc (accumaltor)
 The function takes two parameters 1st - acc(accumalor) and 2nd - curr (current value in arr)
 
@@ -425,7 +424,7 @@ const output = arr.reduce(function(acc, curr) {
     return acc;
 }, 0);
 
-console.log(output);*/
+console.log(output);
 
 const arr = [5, 1, 3, 2, 6];
 // normal way
@@ -450,3 +449,136 @@ const output = arr.reduce(function (max, curr) {
 }, 0);
 
 console.log(output);
+
+
+const users = [
+    { firstName: "aman", lastName: "kumar", age: 24 },
+    { firstName: "donald", lastName: "trump", age: 75 },
+    { firstName: "elon", lastName: "musk", age: 50 },
+    { firstName: "rashmika", lastName: "mandhana", age: 24 },
+];
+
+const output = users.map(x => x.firstName + " " + x.lastName);
+
+console.log(output);
+
+// { 24: 2, 75: 1, 50: 1 }
+const output2 = users.reduce(function (acc, curr) {
+    if (acc[curr.age]){
+        acc[curr.age] = ++acc[curr.age];
+    }
+    else {
+        acc[curr.age] = 1;
+    }
+
+    return acc;
+}, {});
+
+console.log(output2);
+
+
+// print firstName whose age is < 30;
+// we can chain map filter and reduce method.
+
+const output3 = users.filter((x) => x.age < 30).map(x => x.firstName);
+console.log(output3);
+
+const output4 = users.filter((x) => x.age < 30)
+.reduce(function(acc, curr) {
+  acc.push(curr.firstName);
+  return acc;
+},[])
+console.log(output4);
+
+// callback hell
+
+console.log("Namaste");
+
+setTimeout(function () {
+    console.log("Javascript");
+}, 5000);
+
+
+console.log("season 2");*/
+
+/*
+//Promises in JavaScript
+
+// handling Inversion of control issue of callback.
+
+const cart = [""];
+
+// passing function in another function. This technique
+// is used using callback which lead to two major issues
+// 1 - Callback Hell and 2 - Inversion of Control
+
+createOrder(cart, function (orderId) {
+    proceedToPayment(orderId);
+});// orderId
+
+
+// Using Promisen(it handles above issues and also a good
+// practice in JS)
+
+const Promise = createOrder(cart);
+// {data: undefined} - here data is passed when the execution of
+// createOrder() is done.
+
+Promise.then(function (orderId) {
+    proceedToPayment(orderId);
+});
+// here we are attaching function with a promise object.
+// as soon as promise object filled with data it automatically
+// calls the function inside it for proceedToPayment()
+
+
+
+const GITHUB_API = "https://api.github.com/users/Aman-137";
+
+const user = fetch(GITHUB_API);
+
+console.log(user);
+
+// attaching callback to promise
+
+user.then(function (data) {
+    console.log(data);
+}); */
+
+// handling Callback Hell issue of callback. code grows horizontally not
+// vertically (i.e; Pyramid of Doom)
+createOrder(cart, function (orderId) {
+    proceedToPayment(orderId, function (paymentInfo) {
+        showOrderSummary(paymentInfo, function () {
+            updateWalletBalance();
+        });
+    });
+});
+
+// How to handle this (use promise chaining)
+
+/*const Promise = createOrder(cart);
+Promise.then(function () {
+
+})*/
+
+// the above method is same as the below one. 
+// here we are using chaining method
+
+createOrder(cart).then(function (orderId) {
+    return proceedToPayment(orderId);
+})
+    .then(function (paymentInfo) {
+        return showOrderSummary(paymentInfo);
+    })
+    .then(function () {
+        return updateWalletBalance();
+    });
+
+// OR, we can also use arrow function here and remove the return keyword
+// and make it a one line of code that is more lean. But it is also good.
+
+createOrder(cart)
+    .then((orderId) => proceedToPayment(orderId))
+    .then((paymentInfo) => showOrderSummary(paymentInfo))
+    .then(()  => updateWalletBalance());

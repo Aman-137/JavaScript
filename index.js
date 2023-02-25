@@ -490,6 +490,8 @@ const output4 = users.filter((x) => x.age < 30)
 },[])
 console.log(output4);
 
+
+
 // callback hell
 
 console.log("Namaste");
@@ -520,11 +522,11 @@ createOrder(cart, function (orderId) {
 // Using Promisen(it handles above issues and also a good
 // practice in JS)
 
-const Promise = createOrder(cart);
+const promise = createOrder(cart);
 // {data: undefined} - here data is passed when the execution of
 // createOrder() is done.
 
-Promise.then(function (orderId) {
+promise.then(function (orderId) {
     proceedToPayment(orderId);
 });
 // here we are attaching function with a promise object.
@@ -543,24 +545,25 @@ console.log(user);
 
 user.then(function (data) {
     console.log(data);
-}); */
+}); 
 
 // handling Callback Hell issue of callback. code grows horizontally not
 // vertically (i.e; Pyramid of Doom)
+
 createOrder(cart, function (orderId) {
     proceedToPayment(orderId, function (paymentInfo) {
         showOrderSummary(paymentInfo, function () {
             updateWalletBalance();
         });
     });
-});
+});*/
 
 // How to handle this (use promise chaining)
 
-/*const Promise = createOrder(cart);
-Promise.then(function () {
+/*const promise = createOrder(cart);
+promise.then(function () {
 
-})*/
+})
 
 // the above method is same as the below one. 
 // here we are using chaining method
@@ -581,4 +584,48 @@ createOrder(cart).then(function (orderId) {
 createOrder(cart)
     .then((orderId) => proceedToPayment(orderId))
     .then((paymentInfo) => showOrderSummary(paymentInfo))
-    .then(()  => updateWalletBalance());
+    .then(()  => updateWalletBalance()); */
+
+
+// Creating promise.
+
+const cart = ["shoes", "pants", "kurta"];
+
+const promise = createOrder(cart);  // orderId
+//console.log(promise);
+
+promise.then(function (orderId) {  // if the promise that is created below 
+    console.log(orderId);          // is resolved than this callback will be executed.
+    //proceedToPayment(orderId);
+})
+.catch(function (err) { /// and if the promise got rejected than this callback will be executed.
+    console.log(err.message);
+})
+
+// 
+function createOrder(cart) {
+    // This is the way of creating a promise 
+    const pr = new Promise(function(resolve, reject) {
+        // createOrder
+        // validateOrder
+        // orderId
+        if (!validateOrder(cart)) {
+            const err = new Error("Cart is not valid.");
+            reject(err);
+        }
+        // logic for createOrder
+        const orderId = "12345";
+        if (orderId) {
+            setTimeout(function() {
+                resolve(orderId);
+            }, 5000)
+            
+        }
+    });
+
+    return pr;
+}
+
+function validateOrder(cart) {
+    return false;
+}

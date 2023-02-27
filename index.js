@@ -545,7 +545,7 @@ console.log(user);
 
 user.then(function (data) {
     console.log(data);
-}); 
+});
 
 // handling Callback Hell issue of callback. code grows horizontally not
 // vertically (i.e; Pyramid of Doom)
@@ -565,7 +565,7 @@ promise.then(function () {
 
 })
 
-// the above method is same as the below one. 
+// the above method is same as the below one.
 // here we are using chaining method
 
 createOrder(cart).then(function (orderId) {
@@ -586,46 +586,118 @@ createOrder(cart)
     .then((paymentInfo) => showOrderSummary(paymentInfo))
     .then(()  => updateWalletBalance()); */
 
-
 // Creating promise.
-
+/*
 const cart = ["shoes", "pants", "kurta"];
 
-const promise = createOrder(cart);  // orderId
-//console.log(promise);
+createOrder(cart) // orderId
+    .then(function (orderId) { // if the promise that is created below
+        console.log(orderId); // is resolved than this callback will be executed.
+        return orderId;
+    })
+    
+    .then(function(orderId){
+        return proceedToPayment(orderId);
+    })
+    .then(function (paymentInfo) {
+        console.log(paymentInfo);
+        return paymentInfo;
+    })
+    .then(function (paymentInfo) {
+        return showOrderSummary(paymentInfo);
+    })
+    .then(function (orderSummary) {
+        console.log(orderSummary);
+        return orderSummary;
+    })
+    .then(function (orderSummary) {
+        return updateWallet(orderSummary);
+    })
+    .then(function (walletBalance) {
+        console.log(walletBalance);
+        return walletBalance
+    })
+    .catch(function (err) { /// and if the promise got rejected than this callback will be executed.
+        console.log(err.message);
+    })
+    .then(function () {
+        console.log("No matter what happens, I will definitely be called.")
+    })
 
-promise.then(function (orderId) {  // if the promise that is created below 
-    console.log(orderId);          // is resolved than this callback will be executed.
-    //proceedToPayment(orderId);
-})
-.catch(function (err) { /// and if the promise got rejected than this callback will be executed.
-    console.log(err.message);
-})
+    //
+    function createOrder(cart) {
+        // This is the way of creating a promise
+        const pr = new Promise(function (resolve, reject) {
+            // createOrder validateOrder orderId
+            if (!validateOrder(cart)) {
+                const err = new Error("Cart is not valid.");
+                reject(err);
+            }
+            // logic for createOrder
+            const orderId = "12345";
+            if (orderId) {
+                setTimeout(function () {
+                    resolve(orderId);
+                }, 5000)
 
-// 
-function createOrder(cart) {
-    // This is the way of creating a promise 
-    const pr = new Promise(function(resolve, reject) {
-        // createOrder
-        // validateOrder
-        // orderId
-        if (!validateOrder(cart)) {
-            const err = new Error("Cart is not valid.");
-            reject(err);
-        }
-        // logic for createOrder
-        const orderId = "12345";
-        if (orderId) {
-            setTimeout(function() {
-                resolve(orderId);
-            }, 5000)
-            
-        }
-    });
+            }
+        });
 
-    return pr;
+        return pr;
+    }
+
+    function proceedToPayment(orderId) {
+        ///
+        return new Promise(function(resolve, reject) {
+            resolve("Payment Successful");
+        });
+    }
+
+    function showOrderSummary(paymentInfo) {
+
+        return new Promise(function(resolve, reject) {
+            resolve("This is your Order Summary.");
+        });
+    }
+
+    function updateWallet(orderSummary) {
+
+        return new Promise(function(resolve, reject) {
+            resolve("Your updated wallet Balance is ...");
+        });
+    }
+
+    function validateOrder(cart) {
+        return true;
+    }*/
+
+
+// Call, Apply & bind method.
+
+// call() method.
+let name = {
+    firstname: "Aman",
+    lastname: "Kumar"
 }
 
-function validateOrder(cart) {
-    return false;
+let printFullName =  function (hometown, state) {
+    console.log(this.firstname + " " + this.lastname + " from " + hometown + ", " + state);
 }
+
+printFullName.call(name, "Gopalganj", "Bihar");
+
+let name2 = {
+    firstname: "M S",
+    lastname: "Dhoni"
+}
+
+printFullName.call(name2, "Ranchi", "Jharkhand");// here every argument is passed individually in call method
+
+// apply() method. - the only difference is we use an array to pass the argument of the function.
+printFullName.apply(name2, ["Ranchi", "Jharkhand"]);// here name2 is the refference of this keyword and array is the second argument
+
+
+// bind() method
+let printMyName = printFullName.bind(name2, "Ranchi", "Jharkhand");
+console.log(printMyName);
+printMyName();

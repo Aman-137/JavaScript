@@ -671,7 +671,7 @@ createOrder(cart) // orderId
         return true;
     }*/
 
-
+/*
 // Call, Apply & bind method.
 
 // call() method.
@@ -700,4 +700,34 @@ printFullName.apply(name2, ["Ranchi", "Jharkhand"]);// here name2 is the reffere
 // bind() method
 let printMyName = printFullName.bind(name2, "Ranchi", "Jharkhand");
 console.log(printMyName);
-printMyName();
+printMyName();*/
+
+
+// bind
+
+let name = {
+    firstname: "Aman",
+    lastname: "Kumar"
+}
+
+let printName = function (hometown, state, country) {
+    console.log(this.firstname + " " + this.lastname + ", " + hometown + ", " + state + ", " + country);
+}
+
+let printMyName = printName.bind(name, "Gopalganj", "Bihar");
+printMyName("India");
+
+// Polyfill for bind() method
+// creating our own bind method
+
+Function.prototype.mybind = function(...args) {
+    let obj = this
+        params = args.slice(1);
+    return function (...args2) {
+        obj.apply(args[0], [...params, ...args2]);
+
+    }
+}
+
+let printMyName2 = printName.mybind(name, "Gopalganj", "Bihar");
+printMyName2("India");

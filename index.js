@@ -720,11 +720,13 @@ printMyName("India");
 // Polyfill for bind() method
 // creating our own bind method
 
-Function.prototype.mybind = function(...args) {
+// Accepting any number of arguments passed to myBind
+Function.prototype.mybind = function(name, ...args) {
     let obj = this
-        params = args.slice(1);
+        //params = args.slice(1);
+    // Acceptin any number of arguments passed to printMyName2.
     return function (...args2) {
-        obj.apply(args[0], [...params, ...args2]);
+        obj.apply(name, [...args, ...args2]);
 
     }
 }

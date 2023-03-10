@@ -702,7 +702,7 @@ let printMyName = printFullName.bind(name2, "Ranchi", "Jharkhand");
 console.log(printMyName);
 printMyName();*/
 
-
+/*
 // bind
 
 let name = {
@@ -732,4 +732,33 @@ Function.prototype.mybind = function(name, ...args) {
 }
 
 let printMyName2 = printName.mybind(name, "Gopalganj", "Bihar");
-printMyName2("India");
+printMyName2("India");*/
+
+
+
+// Currying in javascript - (using two methods)
+// 1 - using (bind method)
+
+let multiply = function (x, y) {
+    console.log(x * y);
+}
+
+let multiplyByTwo = multiply.bind(this, 2);
+multiplyByTwo(5);
+
+let multiplyByThree = multiply.bind(this, 3);
+multiplyByThree(5);
+
+// 2 - using Closures
+
+let multiply2 = function (x) {
+    return function (y) {
+        console.log(x * y);
+    }
+}
+
+let multiplyByTwo2 = multiply2(2);
+multiplyByTwo2(3);
+
+let multiplyByThree2 = multiply2(3);
+multiplyByThree2(3);

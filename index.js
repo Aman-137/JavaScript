@@ -735,7 +735,7 @@ let printMyName2 = printName.mybind(name, "Gopalganj", "Bihar");
 printMyName2("India");*/
 
 
-
+/*
 // Currying in javascript - (using two methods)
 // 1 - using (bind method)
 
@@ -761,4 +761,28 @@ let multiplyByTwo2 = multiply2(2);
 multiplyByTwo2(3);
 
 let multiplyByThree2 = multiply2(3);
-multiplyByThree2(3);
+multiplyByThree2(3);*/
+
+
+
+// Debouncing in JavaScript.
+
+let counter = 0;
+const getData = () => {
+    // calls api and get data.
+    console.log("Fetching data...", counter++);
+}
+
+const debounce = function (fn, d) {
+    let timer;
+    return function() {
+        let context = this,
+        args = arguments;
+        clearTimeout(timer);
+        timer = setTimeout(()  => {
+            getData.apply(context, arguments);
+        }, d);
+    }
+}
+
+const betterFunction = debounce(getData, 300);

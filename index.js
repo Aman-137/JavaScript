@@ -763,7 +763,7 @@ multiplyByTwo2(3);
 let multiplyByThree2 = multiply2(3);
 multiplyByThree2(3);*/
 
-
+/*
 
 // Debouncing in JavaScript.
 
@@ -786,3 +786,13 @@ const debounce = function (fn, d) {
 }
 
 const betterFunction = debounce(getData, 300);
+*/
+
+
+//console.log("Hello Aman");
+
+var newElement = document.createElement("h2");
+newElement.textContent = "Hello, I am a h2 Tag";
+document.querySelector("body").appendChild(newElement);
+
+console.log(document.URL);

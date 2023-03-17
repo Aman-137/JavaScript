@@ -763,8 +763,8 @@ multiplyByTwo2(3);
 let multiplyByThree2 = multiply2(3);
 multiplyByThree2(3);*/
 
-/*
 
+/*
 // Debouncing in JavaScript.
 
 let counter = 0;
@@ -788,11 +788,34 @@ const debounce = function (fn, d) {
 const betterFunction = debounce(getData, 300);
 */
 
-
+/*
 //console.log("Hello Aman");
 
 var newElement = document.createElement("h2");
 newElement.textContent = "Hello, I am a h2 Tag";
 document.querySelector("body").appendChild(newElement);
 
-console.log(document.URL);
+console.log(document.URL);*/
+
+
+
+// Event Bubbling and Event Capturing.
+
+document.querySelector('#grandparent')
+.addEventListener('click', (e) => {
+    console.log("GrandParent Clicked");
+    e.stopPropagation();
+}, true);
+// default or false is bubbling and true is capturing
+
+document.querySelector('#parent')
+.addEventListener('click', (e) => {
+    console.log("Parent Clicked");
+    //e.stopPropagation();
+}, true);
+
+document.querySelector('#child')
+.addEventListener('click', (e) => {
+    console.log("Child Clicked");
+    //e.stopPropagation();
+}, true);

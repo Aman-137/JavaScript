@@ -5,14 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Namaste JavaScript</title>
+
+    <style>
+    div {
+        min-width: 100px;
+        min-height: 100px;
+        padding: 30px;
+        border: 1px solid red;
+    }
+    </style>
 </head>
+
 <body>
+
+    <div id="grandparent">
+        <div id="parent">
+            <div id="child"></div>
+        </div>
+    </div>
     <!--
     <input type="text" onkeyup="betterFunction()"/>
-    -->
+    
     <h1>This is a heading</h1>
     
     <p>This is a paragraph</p>
+    -->
     <script src="src/index.js"></script>
 </body>
 </html>

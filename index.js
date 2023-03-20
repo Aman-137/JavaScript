@@ -798,7 +798,7 @@ document.querySelector("body").appendChild(newElement);
 console.log(document.URL);*/
 
 
-
+/*
 // Event Bubbling and Event Capturing.
 
 document.querySelector('#grandparent')
@@ -818,4 +818,26 @@ document.querySelector('#child')
 .addEventListener('click', (e) => {
     console.log("Child Clicked");
     //e.stopPropagation();
-}, true);
+}, true);*/
+
+
+/*
+// Event delegation
+
+document.querySelector("#category")
+.addEventListener('click', (e) => {
+    console.log(e.target.id);
+    if (e.target.tagName == "LI") {
+        window.location.href = "/" + e.target.id;
+    }
+    
+});*/
+
+// another example of event deligation
+document.querySelector("#form")
+.addEventListener('keyup', (e) => {
+    console.log(e);
+    if (e.target.dataset.uppercase != undefined) {
+        e.target.value = e.target.value.toUpperCase();
+    }
+});

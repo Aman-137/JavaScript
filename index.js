@@ -831,7 +831,7 @@ document.querySelector("#category")
         window.location.href = "/" + e.target.id;
     }
     
-});*/
+});
 
 // another example of event deligation
 document.querySelector("#form")
@@ -840,4 +840,44 @@ document.querySelector("#form")
     if (e.target.dataset.uppercase != undefined) {
         e.target.value = e.target.value.toUpperCase();
     }
-});
+});*/
+
+
+/*
+// Prototype and Prototypal Inheritance
+
+//let arr = ["Aman", "Saket"];
+let object = {
+    name: "Aman",
+    city: "Gopalganj",
+    getIntro: function() {
+        console.log(this.name + " from " + this.city);
+    }
+}
+
+// function fun() {
+
+// }
+
+let object2 = {
+    name: "Aditya"
+}
+
+// Never do this (in real life project)
+object2.__proto__ = object;
+// and this is actually prototypal inheritance in which object2
+// acquiring methods and properties of existing object.
+*/
+
+
+// this will add and give access of mybind method to all the function
+Function.prototype.mybind = function () {
+    console.log("India");
+}
+
+function fun() {
+
+}
+function fun2() {
+    
+}

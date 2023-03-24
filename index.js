@@ -867,7 +867,7 @@ let object2 = {
 object2.__proto__ = object;
 // and this is actually prototypal inheritance in which object2
 // acquiring methods and properties of existing object.
-*/
+
 
 
 // this will add and give access of mybind method to all the function
@@ -879,5 +879,45 @@ function fun() {
 
 }
 function fun2() {
-    
+
+}*/
+
+
+/*
+// Throttling in Javascript
+
+// without using throttling
+
+const normalFunc = () => {
+    console.log("Normal Function")
 }
+
+window.addEventListener("resize", normalFunc);*/
+
+// using Throttling
+
+const loggerFunc = () => {
+    console.log("Logger Function");
+}
+
+const throttle = (func, limit) => {
+    let flag = true;
+
+    return function() {
+        let context = this;
+        let args = arguments;
+
+        if (flag){
+            func.apply(context, args);
+            flag = false;
+
+            setTimeout(() => {
+                flag = true;
+            }, limit)
+        }
+    }
+}
+
+const betterLoggerFunc = throttle(loggerFunc, 1000);
+
+window.addEventListener("resize", betterLoggerFunc);

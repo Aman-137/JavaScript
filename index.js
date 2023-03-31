@@ -892,7 +892,7 @@ const normalFunc = () => {
     console.log("Normal Function")
 }
 
-window.addEventListener("resize", normalFunc);*/
+window.addEventListener("resize", normalFunc);
 
 // using Throttling
 
@@ -920,4 +920,52 @@ const throttle = (func, limit) => {
 
 const betterLoggerFunc = throttle(loggerFunc, 1000);
 
-window.addEventListener("resize", betterLoggerFunc);
+window.addEventListener("resize", betterLoggerFunc);*/
+
+
+
+// function to find the longest word in a string.
+const string = "Thi quick brown fox jumped over the lazy dog";
+console.log(string.length);
+
+function longestWord(str) {
+
+    let maxCount = 0;
+    let curCount = 0;
+
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] == " ") {
+            if (curCount > maxCount) {
+                maxCount = curCount;
+            }
+            curCount = 0
+        } else {
+            curCount++;
+        }
+    }
+
+    if (curCount > maxCount) {
+        maxCount = curCount;
+    }
+
+    return maxCount;
+}
+
+console.log(longestWord(string));
+
+
+function findLongestWordLength(str) {
+    let words = str.split(' ');
+    let maxLength = 0;
+  
+    for (let i = 0; i < words.length; i++) {
+      if (words[i].length > maxLength) {
+        maxLength = words[i].length;
+        
+      }
+    }
+  
+    return maxLength;
+  }
+
+console.log(findLongestWordLength(string));

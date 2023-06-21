@@ -86,6 +86,7 @@
 // let a = 10;
 // var b = 12;
 
+/*
 function abc() {
   console.log(a, b, c);
 
@@ -94,3 +95,169 @@ function abc() {
   var a = 4;
 }
 abc();
+*/
+
+// Map, Filter and Reduce
+// Map
+
+const nums = [1, 2, 3, 4, 5];
+
+// const multiplyThree = nums.map((num, i, arr) => {
+//   return num * 3 + i;
+// });
+// console.log(multiplyThree);
+
+// Filter
+
+// const moreThanTwo = nums.filter((num) => {
+//   return num > 2;
+// });
+// console.log(moreThanTwo);
+
+// Reduce
+
+// const sum = nums.reduce((acc, curr, i, arr) => {
+//   return acc + curr;
+// }, 0);
+// console.log(sum);
+
+// Polyfill for map()
+/*
+Array.prototype.myMap = function (cb) {
+  let temp = [];
+  for (let i = 0; i < this.length; i++) {
+    temp.push(cb(this[i], i, this));
+  }
+  return temp;
+};
+const multiplyThree = nums.myMap((num) => {
+  return num * 3;
+});
+console.log(multiplyThree);
+*/
+
+// Polyfill for filter()
+/*
+Array.prototype.myFilter = function (cb) {
+  let temp = [];
+  for (let i = 0; i < this.length; i++) {
+    if (cb(this[i], i, this)) {
+      temp.push(this[i]);
+    }
+  }
+  return temp;
+};
+
+const moreThanTwo = nums.myFilter((num) => {
+  return num > 2;
+});
+console.log(moreThanTwo);
+*/
+
+// Polyfill for reduce()
+/*
+Array.prototype.myReduce = function (cb, initialValue) {
+  var accumulator = initialValue;
+
+  for (let i = 0; i < this.length; i++) {
+    accumulator = accumulator ? cb(accumulator, this[i], i, this) : this[i];
+  }
+
+  return accumulator;
+};
+
+const sum = nums.myReduce((acc, curr, i, arr) => {
+  return acc + curr;
+}, 0);
+console.log(sum);
+*/
+
+// Question 1: map vs forEach
+/*
+const arr = [2, 5, 3, 4, 7];
+
+const mapResult = arr
+  .map((ele) => {
+    return ele + 3; // return a new array (don't modify the existing array)
+  })
+  .filter((ele) => {
+    return ele > 7; // we can chain the map reduce filter method.
+  });
+
+const forEachResult = arr.forEach((ele, i) => {
+  arr[i] = ele + 2; // return undefined (it modify the original array)
+}); // we can't chain it
+
+console.log(mapResult, forEachResult, arr);
+*/
+
+// map, filter and reduce - O/P based question
+// Question - 1 (print the name of each student in uppercase)
+
+let students = [
+  { name: "Piyush", rollNumber: 31, marks: 80 },
+  { name: "Jenny", rollNumber: 15, marks: 69 },
+  { name: "Kaushal", rollNumber: 16, marks: 35 },
+  { name: "Dilpreet", rollNumber: 7, marks: 55 },
+];
+/*
+// using for loop
+let names = [];
+for (let i = 0; i < students.length; i++) {
+  names.push(students[i].name.toUpperCase());
+}
+console.log(names);
+
+// using map
+const names = students.map((stu, i) => {
+  return stu.name.toUpperCase();
+});
+console.log(names);
+
+
+// Question - 2 (Return only details of those who scored more than 60 marks)
+
+const scoreMoreThan60 = students.filter((stu) => stu.marks > 60);
+
+console.log(scoreMoreThan60);
+
+// Question - 3 (More than 60 marks and rollNumber greater than 15)
+
+const details = students.filter((stu) => stu.marks > 60 && stu.rollNumber > 15);
+
+console.log(details);
+
+
+// Question - 4 {sum of marks of all students}
+
+const totalMarks = students.reduce((acc, curr) => {
+  return acc + curr.marks;
+}, 0);
+
+console.log(totalMarks);
+
+// Question - 5 (Return only names of the student who scored more than 60)
+
+const nameOfStudent = students
+  .filter((stu) => stu.marks > 60)
+  .map((stu) => stu.name);
+
+console.log(nameOfStudent);
+*/
+
+// Question - 6 {Return total marks for students with marks greater than 60
+//                 after 20 marks have been added to those who scored less than 60}
+
+const totalMarks = students
+  .map((stu) => {
+    if (stu.marks < 60) {
+      stu.marks += 20;
+    }
+    return stu;
+  })
+  .filter((stu) => stu.marks > 60)
+  .reduce((acc, curr) => {
+    return acc + curr.marks;
+  }, 0);
+
+console.log(totalMarks); //output = 224

@@ -243,7 +243,7 @@ const nameOfStudent = students
   .map((stu) => stu.name);
 
 console.log(nameOfStudent);
-*/
+
 
 // Question - 6 {Return total marks for students with marks greater than 60
 //                 after 20 marks have been added to those who scored less than 60}
@@ -261,3 +261,46 @@ const totalMarks = students
   }, 0);
 
 console.log(totalMarks); //output = 224
+*/
+
+// Functions in JavaScript.
+/*
+//Q1 - what is function declaration?
+function square(num) {
+  return num * num;
+}
+
+console.log(square(4));  // 16
+
+//Q2 - what is function expression?
+const square = function (num) {
+  return num * num;
+};
+
+console.log(square(4)); // 16
+*/
+
+// Q3 - what are First Class Functions?
+// Ans - where a function can be treated like a variable.
+
+function square(num) {
+  return num * num;
+}
+function displaySquare(fn) {
+  console.log("Square is " + fn(5));
+}
+
+displaySquare(square);
+
+// Q4 - what is IIFE?
+(function square(num) {
+  console.log(num * num);
+})(5);
+
+// Q5 = IIFE - O/P based question
+
+(function (x) {
+  return (function (y) {
+    console.log(x);
+  })(2);
+})(1);

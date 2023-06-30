@@ -352,7 +352,6 @@ function functionName() {
 }
 
 // var x = 34;
-*/
 
 // Q9 - Function Hoisting - O/P based question
 
@@ -364,3 +363,37 @@ var fun = function () {
 };
 console.log(x);
 fun();
+
+
+// Q10 - Params vs Arguments
+
+// function square(num) {// Params
+//   console.log(num * num);
+// }
+
+// square(5); // Arguments
+
+function multiply(...nums) {
+  // rest
+  console.log(nums);
+  console.log(nums[0] * nums[1]);
+}
+
+var arr = [5, 6];
+
+multiply(...arr); // spread
+
+
+// Q11 - Params vs Arguments - O/P based question
+
+const fn = (a, x, y, ...numbers) => {
+  console.log(x, y, numbers);
+};
+
+fn(5, 6, 3, 7, 8, 9);
+*/
+
+// Q12 - Callback Function
+// A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action.
+
+// Q13 - Arrow Functions

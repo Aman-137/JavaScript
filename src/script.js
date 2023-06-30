@@ -278,7 +278,7 @@ const square = function (num) {
 };
 
 console.log(square(4)); // 16
-*/
+
 
 // Q3 - what are First Class Functions?
 // Ans - where a function can be treated like a variable.
@@ -297,10 +297,70 @@ displaySquare(square);
   console.log(num * num);
 })(5);
 
-// Q5 = IIFE - O/P based question
+// Q5 - IIFE - O/P based question
 
 (function (x) {
   return (function (y) {
     console.log(x);
   })(2);
 })(1);
+
+
+// Q6 - Function Scope
+
+var num1 = 20;
+num2 = 3;
+name = "Roadside Coder";
+
+function multiply() {
+  return num1 * num2;
+}
+console.log(multiply());
+
+// A nested function example
+function getScore() {
+  var num1 = 2;
+  num2 = 3;
+
+  function add() {
+    return name + " scored " + (num1 + num2);
+  }
+
+  return add();
+}
+
+console.log(getScore());
+
+
+// Q7 - Function Scope - O/P based question
+
+for (let i = 0; i < 5; i++) {
+  setTimeout(function () {
+    console.log(i);
+  }, i * 1000);
+}
+
+
+// Q8 - Funcion Hoisting
+functionName();
+// console.log(x);
+
+function functionName() {
+  console.log(x);
+  var x = 34;
+  console.log("AMan KumaR");
+}
+
+// var x = 34;
+*/
+
+// Q9 - Function Hoisting - O/P based question
+
+var x = 21;
+
+var fun = function () {
+  console.log(x);
+  var x = 12;
+};
+console.log(x);
+fun();

@@ -397,3 +397,48 @@ fn(5, 6, 3, 7, 8, 9);
 // A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action.
 
 // Q13 - Arrow Functions
+
+// const add = (firstNum, secondNum) => {
+//   return firstNum + secondNum;
+// };
+
+// 1 - syntax
+
+function square(num) {
+  return num * num;
+}
+
+const squareArrow = (num) => {
+  return num * num;
+};
+
+// 2 - Implicit "return" keyword
+const squareArr = (num) => num * num;
+
+// 3 - Arguments
+
+function fn() {
+  console.log(arguments);
+}
+// fn(1, 2, 3);
+
+const fnArr = () => {
+  console.log(arguments);
+};
+
+// fnArr(1, 3, 4);
+
+// 4 - "this" keyword
+
+let user = {
+  username: "Roadside Coder",
+  rc1: () => {
+    console.log("Subscribe to " + this.username);
+  },
+  rc2() {
+    console.log("Subscribe to " + this.username);
+  },
+};
+
+user.rc1();
+user.rc2();

@@ -392,7 +392,7 @@ const fn = (a, x, y, ...numbers) => {
 
 fn(5, 6, 3, 7, 8, 9);
 */
-
+/*
 // Q12 - Callback Function
 // A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action.
 
@@ -442,3 +442,150 @@ let user = {
 
 user.rc1();
 user.rc2();
+*/
+
+/*
+Closures in JavaScript
+// Lexical scope
+
+var userName = "Roadside coder";
+// global scope
+function local() {
+  // local scope
+  console.log(userName);
+}
+
+local();
+function subscribe() {
+  var name = "Aman Kumar";
+  // inner scope 2
+  function displayName() {
+    // inner scope
+    alert(name);
+  }
+  displayName();
+}
+subscribe();
+
+
+// what is closure?
+function makeFunc() {
+  var name = "Mozilla";
+
+  function displayName(num) {
+    console.log(name, num);
+  }
+  return displayName;
+}
+
+// var myFucn = makeFunc();
+// myFucn();
+
+makeFunc()(5);
+
+// Closure Scope chain -> It has access to all of the scopes
+var userName = "Saket";
+function makeFunc() {
+  var name = "Mozilla";
+
+  function displayName(num) {
+    console.log(name, num, userName);
+  }
+  return displayName;
+}
+
+// var myFucn = makeFunc();
+// myFucn();
+
+makeFunc()(5);
+
+// global scope
+var e = 10;
+function sum(a) {
+  return function (b) {
+    return function (c) {
+      // outer function scope
+      return function (d) {
+        // local scope
+        return a + b + c + d + e;
+      };
+    };
+  };
+}
+console.log(sum(1)(2)(3)(4)); // log = 20
+
+// Q1
+let count = 0;
+(function printCount() {
+  if (count === 0) {
+    let count = 1; // shadowing
+    console.log(count); // 1
+  }
+  // count is still 0
+  console.log(count); // 0
+})();
+
+// Q2 - Write a function that would allow you to do this
+
+function createBase(num) {
+  return function (innerNum) {
+    console.log(innerNum + num);
+  };
+}
+
+var addSix = createBase(6);
+addSix(10); // returns 16
+addSix(15); // returns 27
+
+// Q3 - Time Optimization
+
+function find() {
+  let a = [];
+  for (let i = 0; i < 1000000; i++) {
+    a[i] = i * i;
+  }
+
+  return function (index) {
+    console.log(a[index]);
+  };
+}
+
+const closure = find();
+console.time("6");
+closure(6);
+console.timeEnd("6");
+console.time("50");
+closure(50);
+console.timeEnd("50");
+
+// Q4 - Block scope and setTimeout
+
+function a() {
+  for (let i = 0; i < 3; i++) {
+    setTimeout(function log() {
+      console.log(i); // loged out 3, 3, 3 (because of var which is a fuction scope)
+    }, i * 1000);
+  }
+}
+a();
+
+function a() {
+  for (let i = 0; i < 3; i++) {
+    setTimeout(function log() {
+      console.log(i); // loged out 0,1,2 (because of let which is a block scope )
+    }, i * 1000);
+  }
+}
+a();
+*/
+
+// without using let how can we solve this problem - we can use closure
+
+for (var i = 0; i < 3; i++) {
+  function inner(i) {
+    setTimeout(function log() {
+      console.log(i);
+    }, i * 1000);
+  }
+  inner(i);
+}

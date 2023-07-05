@@ -577,7 +577,7 @@ function a() {
   }
 }
 a();
-*/
+
 
 // without using let how can we solve this problem - we can use closure
 
@@ -589,3 +589,73 @@ for (var i = 0; i < 3; i++) {
   }
   inner(i);
 }
+
+
+// Q5 - How would you use a closure to create a private counter?
+
+function counter() {
+  var _counter = 0; // private variable counter
+
+  function add(increment) {
+    // we are using these function to manipulate the private counter
+    _counter += increment;
+  }
+  function retrive() {
+    return "Counter = " + _counter;
+  }
+
+  return {
+    add,
+    retrive,
+  };
+}
+
+const c = counter();
+c.add(5);
+c.add(10);
+
+console.log(c.retrive());
+
+// Q6 - What is Module Pattern?
+
+var Module = (function () {
+  function privateMethod() {
+    // do something
+    console.log("private");
+  }
+
+  return {
+    publicMethod: function () {
+      console.log("public");
+    },
+  };
+})();
+
+Module.publicMethod();
+Module.privateMethod();
+*/
+
+// Q7 - Make this run only once
+
+let view;
+function likeTheVideo() {
+  let called = 0;
+
+  return function () {
+    if (called > 0) {
+      console.log("Already Subscribed");
+    } else {
+      view = "Roadside Coder";
+      console.log("Subscribe to", view);
+      called++;
+    }
+  };
+}
+
+let isSubscribed = likeTheVideo();
+
+isSubscribed();
+isSubscribed();
+isSubscribed();
+isSubscribed();
+isSubscribed();

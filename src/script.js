@@ -711,4 +711,36 @@ console.time("second call");
 console.log(memoizedClumsyProduct(9467, 7649));
 console.timeEnd("second call");
 
+// second example cache/memoize
+
+function memoize(func) {
+  const cache = {};
+
+  return function (...args) {
+    const key = JSON.stringify(args);
+
+    if (cache[key]) {
+      return cache[key];
+    }
+
+    const result = func.apply(this, args);
+    cache[key] = result;
+
+    return result;
+  };
+}
+
+function computeExpensiveValue(n) {
+  // Some expensive computation
+  console.log("Computing...");
+  return n * 2;
+}
+
+const memoizedCompute = memoize(computeExpensiveValue);
+
+console.log(memoizedCompute(5)); // Output: Computing... 10
+console.log(memoizedCompute(5)); // Output: 10 (Returned from cache)
+console.log(memoizedCompute(3)); // Output: Computing... 6
+console.log(memoizedCompute(3)); // Output: 6 (Returned from cache)
+
 // Q10 - difference between closure and scope

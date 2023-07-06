@@ -633,7 +633,6 @@ var Module = (function () {
 
 Module.publicMethod();
 Module.privateMethod();
-*/
 
 // Q7 - Make this run only once
 
@@ -659,3 +658,57 @@ isSubscribed();
 isSubscribed();
 isSubscribed();
 isSubscribed();
+
+// Q8 - Once Polyfill
+
+function once(func, context) {
+  let ran;
+
+  return function () {
+    if (func) {
+      ran = func.apply(context || this, arguments);
+      func = null;
+    }
+
+    return ran;
+  };
+}
+
+const hello = once((a, b) => console.log("hello", a, b));
+
+hello(1, 2);
+hello(1, 2);
+hello(1, 2);
+hello(1, 2);
+*/
+
+// Q8 - Memoize Polyfill (Implement caching/memoize function)
+
+function myMemoize(fn, context) {
+  const res = [];
+  return function (...args) {
+    var argsCache = JSON.stringify(args);
+
+    if (!res[argsCache]) {
+      res[argsCache] = fn.call(context || this, ...args);
+    }
+    return res[argsCache];
+  };
+}
+
+const clumsyProduct = (num1, num2) => {
+  for (let i = 0; i < 100000000; i++) {}
+  return num1 * num2;
+};
+
+const memoizedClumsyProduct = myMemoize(clumsyProduct);
+
+console.time("first call");
+console.log(memoizedClumsyProduct(9467, 7649));
+console.timeEnd("first call");
+
+console.time("second call");
+console.log(memoizedClumsyProduct(9467, 7649));
+console.timeEnd("second call");
+
+// Q10 - difference between closure and scope

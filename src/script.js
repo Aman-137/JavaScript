@@ -680,7 +680,6 @@ hello(1, 2);
 hello(1, 2);
 hello(1, 2);
 hello(1, 2);
-*/
 
 // Q8 - Memoize Polyfill (Implement caching/memoize function)
 
@@ -710,6 +709,7 @@ console.timeEnd("first call");
 console.time("second call");
 console.log(memoizedClumsyProduct(9467, 7649));
 console.timeEnd("second call");
+
 
 // second example cache/memoize
 
@@ -744,3 +744,67 @@ console.log(memoizedCompute(3)); // Output: Computing... 6
 console.log(memoizedCompute(3)); // Output: 6 (Returned from cache)
 
 // Q10 - difference between closure and scope
+*/
+/*
+// Currying in JavaScript
+// Example f(a, b) into f(a)(b)
+
+function f(a) {
+  return function (b) {
+    return `${a} ${b}`;
+  };
+}
+
+console.log(f(5)(4));
+
+// Q1 - sum(2)(6)(1)
+
+function sum(a) {
+  return function (b) {
+    return function (c) {
+      return a + b + c;
+    };
+  };
+}
+
+console.log(sum(2)(6)(1));
+
+// Q2 - evaluate("sum")(4)(2) => 6
+//      evaluate("multiply")(4)(2) => 8
+//      evaluate("divide")(4)(2) => 2
+//      evaluate("substract")(4)(2) => 2
+
+function evaluate(operation) {
+  return function (a) {
+    return function (b) {
+      if (operation === "sum") return a + b;
+      else if (operation === "multiply") return a * b;
+      else if (operation === "divide") return a / b;
+      else if (operation === "substract") return a - b;
+      else return "Invalid Operation";
+    };
+  };
+}
+
+// console.log(evaluate("sum")(4)(2));
+// console.log(evaluate("multiply")(4)(2));
+// console.log(evaluate("divide")(4)(2));
+// console.log(evaluate("substract")(4)(2));
+
+// this is also a use case of currying by initialize our operation once and use it multiple times.
+const mul = evaluate("multiply");
+
+console.log(mul(2)(6));
+console.log(mul(4)(5));
+*/
+
+// Q3 - Infinite Currying -> sum(1)(2)(3)....(n)
+
+function add(a) {
+  return function (b) {
+    if (b) return add(a + b);
+    return a;
+  };
+}
+
+console.log(add(5)(2)(4)(8)());

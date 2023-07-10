@@ -796,7 +796,6 @@ const mul = evaluate("multiply");
 
 console.log(mul(2)(6));
 console.log(mul(4)(5));
-*/
 
 // Q3 - Infinite Currying -> sum(1)(2)(3)....(n)
 
@@ -808,3 +807,67 @@ function add(a) {
 }
 
 console.log(add(5)(2)(4)(8)());
+
+// Q4 - difference b/w currying vs partial application
+
+// Partial Application - here we have three arguments and we are
+// returning only two functions.
+function sum(a) {
+  return function (b, c) {
+    return a + b + c;
+  };
+}
+
+const x = sum(10);
+console.log(x(1, 4));
+console.log(x(2, 3));
+
+// or
+console.log(sum(5)(3, 4));
+
+// Currying - here we have three argumenst and we are returning
+// three functions
+function sum(a) {
+  return function (b) {
+    return function (c) {
+      return a + b + c;
+    };
+  };
+}
+
+console.log(sum(1)(2)(3));
+
+// Q5 - Manipulating DOM
+
+function updateElementText(id) {
+  return function (content) {
+    document.querySelector("#" + id).textContent = content;
+  };
+}
+
+const updateHeader = updateElementText("heading");
+
+updateHeader("Aman Kumar");
+*/
+
+// Q6 - curry() implementation
+// ex - converts f(a, b, c) into f(a)(b)(c)
+
+function curry(func) {
+  return function curriedFunc(...args) {
+    console.log(args.length, func.length);
+    if (args.length >= func.length) {
+      return func(...args);
+    } else {
+      return function (...next) {
+        return curriedFunc(...args, ...next);
+      };
+    }
+  };
+}
+
+const sum = (a, b, c) => a + b + c;
+
+const totalSum = curry(sum);
+
+console.log(totalSum(1)(2)(3));

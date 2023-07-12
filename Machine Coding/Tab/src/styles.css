@@ -1,0 +1,14 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+button {
+  padding: 4px 8px;
+  margin: 4px;
+}
+
+.active {
+  color: white;
+  background-color: blueviolet;
+}

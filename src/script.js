@@ -848,7 +848,6 @@ function updateElementText(id) {
 const updateHeader = updateElementText("heading");
 
 updateHeader("Aman Kumar");
-*/
 
 // Q6 - curry() implementation
 // ex - converts f(a, b, c) into f(a)(b)(c)
@@ -871,3 +870,60 @@ const sum = (a, b, c) => a + b + c;
 const totalSum = curry(sum);
 
 console.log(totalSum(1)(2)(3));
+*/
+
+// JavaScripts Objects.
+/*
+const user = {
+  name: "Roadside Coder",
+  age: 24,
+  "like the video": true,
+};
+
+// user.name = "Aman Kumar";
+// delete user.age;
+delete user["like the video"];
+console.log(user);
+
+const func = (function (a) {
+  delete a; // it will not affect because it is used to delete something related to object
+  // here a is a local variable
+  return a;
+})(5);
+
+console.log(func);
+
+
+const property = "firstName";
+const name = "Aman Kumar";
+
+const user = {
+  [property]: name,
+};
+
+console.log(user.firstName);
+
+const user = {
+  name: "Aman",
+  age: 24,
+  isTotallyAwesome: true,
+};
+
+for (key in user) {
+  // console.log(key);
+  console.log(user[key]);
+}
+
+// Q1 - tell output
+
+const obj = {
+  a: "one",
+  b: "two",
+  a: "three",
+};
+
+console.log(obj); // a: "one" is replaced by "three"
+// and it will still be in the first position with replaced value while printing
+*/
+
+// Q2 -

@@ -100,7 +100,7 @@ abc();
 // Map, Filter and Reduce
 // Map
 
-const nums = [1, 2, 3, 4, 5];
+// const nums = [1, 2, 3, 4, 5];
 
 // const multiplyThree = nums.map((num, i, arr) => {
 //   return num * 3 + i;
@@ -194,12 +194,12 @@ console.log(mapResult, forEachResult, arr);
 // map, filter and reduce - O/P based question
 // Question - 1 (print the name of each student in uppercase)
 
-let students = [
-  { name: "Piyush", rollNumber: 31, marks: 80 },
-  { name: "Jenny", rollNumber: 15, marks: 69 },
-  { name: "Kaushal", rollNumber: 16, marks: 35 },
-  { name: "Dilpreet", rollNumber: 7, marks: 55 },
-];
+// let students = [
+//   { name: "Piyush", rollNumber: 31, marks: 80 },
+//   { name: "Jenny", rollNumber: 15, marks: 69 },
+//   { name: "Kaushal", rollNumber: 16, marks: 35 },
+//   { name: "Dilpreet", rollNumber: 7, marks: 55 },
+// ];
 /*
 // using for loop
 let names = [];
@@ -924,6 +924,55 @@ const obj = {
 
 console.log(obj); // a: "one" is replaced by "three"
 // and it will still be in the first position with replaced value while printing
+
+// Q2 - Creatr a function multiplyByTwo(obj) that
+// multiplies all numeric property values of nums by 2
+
+let nums = {
+  a: 100,
+  b: 200,
+  title: "My nums",
+};
+
+multiplyByTwo(nums);
+
+function multiplyByTwo(obj) {
+  for (key in obj) {
+    if (typeof obj[key] === "number") {
+      obj[key] *= 2;
+    }
+  }
+}
+console.log(nums);
+
+// Q3 - what's the output.
+
+const a = {};
+const b = { key: "b" };
+const c = { key: "c" };
+
+a[b] = 123;
+a[c] = 456;
+
+// console.log(a[b]); // 456 overwrite the value "[object, Object]"
+console.log(a);
+
+// Q4 - JSON.stringigy and JSON.parse
+
+const user = {
+  name: "Aman",
+  age: 24,
+};
+
+const strObj = JSON.stringify(user);
+
+localStorage.setItem("test", strObj);
+console.log(localStorage.getItem("test"));
+
+console.log(JSON.parse(localStorage.getItem("test")));
+// console.log(JSON.parse(strObj));
 */
 
-// Q2 -
+// Q5 - What's the output
+
+console.log([..."Lydia"]);

@@ -971,8 +971,82 @@ console.log(localStorage.getItem("test"));
 
 console.log(JSON.parse(localStorage.getItem("test")));
 // console.log(JSON.parse(strObj));
-*/
+
 
 // Q5 - What's the output
 
 console.log([..."Lydia"]);
+
+// Q6 - What's the output
+
+const user = { name: "Lydia", age: 21 };
+const admin = { admin: true, ...user };
+
+console.log(admin);
+
+// Q7 -
+
+const settings = {
+  username: "Aman",
+  level: 19,
+  health: 90,
+};
+
+const data = JSON.stringify(settings, ["level", "username"]);
+
+console.log(data);
+
+// Q 8 - What's the o/p
+
+const shape = {
+  radius: 10,
+  diameter() {
+    return this.radius * 2; // "this" refers to shape object
+  },
+  perimeter: () => 2 * Math.PI * this.radius, // arrow function "this" refers to window object
+};
+
+console.log(shape.diameter()); // 20
+console.log(shape.perimeter()); // NaN
+*/
+
+// Q9 - What is destructuring in objects?
+
+let user = {
+  name: "Aman",
+  age: 24,
+  college: "LNCT",
+  fullName: {
+    first: "Saket",
+    last: "Singh",
+  },
+};
+
+// const { name, age, college } = user;
+// console.log(name, age, college);
+
+const {
+  fullName: { first, last },
+} = user;
+
+console.log(first, last);
+
+// Q10 - What's the output
+
+function getItems(fruitList, favoriteFruit, ...args) {
+  return [...fruitList, ...args, favoriteFruit];
+}
+
+console.log(getItems(["banana", "apple"], "pear", "orange"));
+
+// Q11 - what's the output
+
+let c = { greeting: "Hey!" };
+let d;
+
+d = c;
+
+c.greeting = "Hello";
+console.log(d.greeting); // 'hello'
+// because we are simply providing the reference and not the complete object
+// any changes in d and c will affect both.

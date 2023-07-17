@@ -1008,7 +1008,6 @@ const shape = {
 
 console.log(shape.diameter()); // 20
 console.log(shape.perimeter()); // NaN
-*/
 
 // Q9 - What is destructuring in objects?
 
@@ -1050,3 +1049,77 @@ c.greeting = "Hello";
 console.log(d.greeting); // 'hello'
 // because we are simply providing the reference and not the complete object
 // any changes in d and c will affect both.
+
+// Q12 - what's the output
+
+console.log({ a: 1 } == { a: 1 }); // false
+console.log({ a: 1 } === { a: 1 }); // false
+// beause both objects are going to point a different memory space
+
+// Q13 - what's the output
+
+let person = { name: "Aman" };
+const members = [person];
+person = null;
+
+console.log(members); // print the object in array
+
+// Q14 - what's the output
+
+const value = { number: 10 };
+
+const multiply = (x = { ...value }) => {
+  console.log((x.number *= 2));
+};
+
+multiply(); // 20
+multiply(); // 20
+
+console.log(value.number); // 10
+multiply(value); // 20
+console.log(value.number); // 20 (modified when passing directly as argument)
+
+multiply(value); // 40
+console.log(value.number); // 40 (again modified)
+
+// Q15 - what's the output
+
+function changeAgeAndReference(person) {
+  person.age = 25;
+  person = {
+    name: "John",
+    age: 50,
+  };
+
+  return person;
+}
+
+const personObj1 = {
+  name: "Alex",
+  age: 30,
+};
+
+const personObj2 = changeAgeAndReference(personObj1);
+
+console.log(personObj1); // {name: "Alex", age: 25} (modified due to person.age = 25)
+console.log(personObj2); // {name: 'John', age: 50} {reassign person to some other object that means it will not affect the reference }
+*/
+
+// Q16 - Shallow copy and Deep copy / clone an object
+
+// Deep Copy
+let user = {
+  name: "Roadside Coder",
+  age: 24,
+};
+
+// const objClone = Object.assign({}, user);
+// objClone.name = "Aman";  // don't affect user
+// or
+// const objClone = JSON.parse(JSON.stringify(user)); // another method of deep copy
+// objClone.name = "Saket"; // don't affect user
+// or
+const objClone = { ...user }; // object destructuring
+objClone.name = "Aman";
+
+console.log(user, objClone);

@@ -1,0 +1,29 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.like-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  padding: 6px 8px;
+  gap: 8px;
+  border: 2px solid #888;
+  border-radius: 30px;
+  color: #888;
+  cursor: pointer;
+}
+
+.like-btn:hover {
+  color: #f00;
+  border-color: #f00;
+}
+
+.like-btn-active,
+.like-btn-active:hover {
+  color: #fff;
+  background-color: #f00;
+  border-color: #f00;
+}

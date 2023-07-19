@@ -1103,7 +1103,7 @@ const personObj2 = changeAgeAndReference(personObj1);
 
 console.log(personObj1); // {name: "Alex", age: 25} (modified due to person.age = 25)
 console.log(personObj2); // {name: 'John', age: 50} {reassign person to some other object that means it will not affect the reference }
-*/
+
 
 // Q16 - Shallow copy and Deep copy / clone an object
 
@@ -1123,3 +1123,196 @@ const objClone = { ...user }; // object destructuring
 objClone.name = "Aman";
 
 console.log(user, objClone);
+
+var a = 1;
+function h() {
+  if (a) {
+    var a = 9;
+  }
+  console.log(a);
+}
+h();
+console.log(a);
+*/
+
+// "this" keyword in javaScript (Implicit Binding)
+/*
+this.a = 5;
+console.log(this.a);
+console.log(this);
+
+
+let user = {
+  name: "Aman",
+  age: 24,
+  getDetails() {
+    console.log(this); // this refers to user object
+  },
+};
+
+user.getDetails();
+
+
+let user = {
+  name: "Aman",
+  age: 24,
+  childObj: {
+    newName: "Saket",
+    getDetails() {
+      console.log(this.newName, "and", this.name); // this.name = undefined because this point ot immediat parent object
+    },
+  },
+};
+
+user.childObj.getDetails();
+
+let user = {
+  name: "Aman",
+  age: 24,
+  getDetails: () => {
+    console.log(this.name); // print nothing - in arrow function this refers to window object
+  },
+};
+
+user.getDetails();
+
+let user = {
+  name: "Aman",
+  age: 24,
+  getDetails() {
+    const nestedFunc = () => console.log(this.name); // but here this works because arrow function
+    // refers here to the normal parent function which is inside the object so it works in this case
+    // i.e; this is pointing to the user object in this scenario
+    nestedFunc();
+  },
+};
+
+user.getDetails();
+
+class user {
+  constructor(n) {
+    this.name = n;
+  }
+
+  getName() {
+    console.log(this.name);
+  }
+}
+
+const User = new user("Aman");
+
+console.log(User);
+User.getName();
+
+// Q1 - What's the output?
+
+const user = {
+  firstName: "Aman!",
+  getName() {
+    const firstName = "Sunny!";
+    return this.firstName;
+  },
+};
+
+console.log(user.getName()); // Aman! user obj
+
+// Q2 - What is the result of accessing its ref? why?
+
+function makeUser() {
+  return {
+    name: "John",
+    // ref: this, // here ref is pointing the parent object which is a window object
+    ref() {
+      return this;
+    },
+  };
+}
+let user = makeUser();
+
+// console.log(user.ref.name); // ref points to window object nothing got printed
+console.log(user.ref().name); // John
+
+const user = {
+  name: "Aman Kumar",
+  logMessage() {
+    console.log(this.name);
+  },
+};
+// setTimeout(user.logMessage, 1000); // logs nothing because setTimeout treats user.logMessage as a callback
+setTimeout(function () {
+  // avoid creating user.logMessage as a callback instead wrap inside a functon 
+  user.logMessage();
+}, 1000);
+
+
+// Q4 - What's the output?
+
+const user = {
+  name: "Aman",
+  greet() {
+    return `Hell0, ${this.name}!`;
+  },
+  farewell: () => {
+    return `Goodbye, ${this.name}!`;
+  },
+};
+
+console.log(user.greet());
+console.log(user.farewell());
+
+// Q5 - create an object calculator
+
+let calculator = {
+  read() {
+    this.a = +prompt("a = ", 0);
+    this.b = +prompt("b = ", 0);
+  },
+
+  sum() {
+    return this.a + this.b;
+  },
+
+  mul() {
+    return this.a * this.b;
+  },
+};
+
+calculator.read();
+console.log(calculator.sum());
+console.log(calculator.mul());
+
+// Q6 - what will be the output
+
+// var length = 4;
+
+// function callback() {
+//   console.log(this.length);
+// }
+
+// const object = {
+//   length: 5,
+//   method(fn) {
+//     fn();
+//   },
+// };
+
+// object.method(callback); // 4 the window/global object
+
+// Tricky question of above type
+var length = 4;
+
+function callback() {
+  console.log(this.length);
+}
+
+const object = {
+  length: 5,
+  method() {
+    // arguments = [callback, 2, 3] i.e; length = 3
+    console.log(arguments);
+    arguments[0]();
+  },
+};
+
+object.method(callback, 2, 3); // 4 the window/global object
+*/

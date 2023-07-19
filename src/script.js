@@ -1316,3 +1316,28 @@ const object = {
 
 object.method(callback, 2, 3); // 4 the window/global object
 */
+
+// Q7 - Implement the calc
+
+const calc = {
+  total: 0,
+
+  add(a) {
+    this.total += a;
+    return this;
+  },
+
+  multiply(a) {
+    this.total *= a;
+    return this;
+  },
+
+  substract(a) {
+    this.total -= a;
+    return this;
+  },
+};
+
+const result = calc.add(10).multiply(8).substract(30).add(10);
+
+console.log(result.total);

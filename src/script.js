@@ -1315,7 +1315,6 @@ const object = {
 };
 
 object.method(callback, 2, 3); // 4 the window/global object
-*/
 
 // Q7 - Implement the calc
 
@@ -1341,3 +1340,100 @@ const calc = {
 const result = calc.add(10).multiply(8).substract(30).add(10);
 
 console.log(result.total);
+*/
+
+// Javascript - Promises, Callbacks, Async/Await, (polyfills for promises)
+// Synchronous vs Asynchronous code
+/*
+// sync code - excutes line by line
+// console.log("Start");
+// console.log("Hello I am Aman!");
+// console.log("Finish");
+
+// async code
+console.log("Start");
+setTimeout(() => {
+  console.log("Hello I am Aman!");
+}, 0);
+console.log("Finish");
+*/
+
+// Callbacks
+/*
+console.log("start");
+
+function importantAction(username, cb) {
+  setTimeout(() => {
+    cb(`Subscribe to ${username}`);
+  }, 1000);
+}
+
+function likeTheVideo(video, cb) {
+  setTimeout(() => {
+    cb(`like the ${video} video`);
+  }, 1000);
+}
+
+function shareTheVideo(video, cb) {
+  setTimeout(() => {
+    cb(`share the ${video} video`);
+  }, 1000);
+}
+// Callback Hell (PYRAMID OF DOOM)
+const message = importantAction("Roadside Coder", function (message) {
+  console.log(message);
+  likeTheVideo("Javascript Interview Questons", (action) => {
+    console.log(action);
+    shareTheVideo("Javascript Interview Questons", (action) => {
+      console.log(action);
+      shareTheVideo("Javascript Interview Questons", (action) => {
+        console.log(action);
+        shareTheVideo("Javascript Interview Questons", (action) => {
+          console.log(action);
+          shareTheVideo("Javascript Interview Questons", (action) => {
+            console.log(action);
+            shareTheVideo("Javascript Interview Questons", (action) => {
+              console.log(action);
+              shareTheVideo("Javascript Interview Questons", (action) => {
+                console.log(action);
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+});
+
+// console.log(message); // o/p - undefined
+
+console.log("stop");
+*/
+
+// Promises
+/*
+console.log("start");
+
+const sub = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const result = true;
+    if (result) {
+      resolve("Subscribed to Roadside Coder");
+    } else {
+      reject(new Error("Why aren't you subscribed to Roadside Coder?"));
+    }
+  }, 2000);
+});
+
+// console.log(sub);
+
+sub
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
+console.log("stop");
+*/

@@ -1436,4 +1436,121 @@ sub
   });
 
 console.log("stop");
+
+// without any coditions
+console.log("start");
+
+const sub = Promise.resolve("Subscribed to Roadside coder");
+console.log(sub);
+sub.then((res) => console.log(res));
+
+console.log("stop");
 */
+
+console.log("start");
+
+function importantAction(username) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(`Subscribe to ${username}`);
+    }, 1000);
+  });
+}
+
+function likeTheVideo(video) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(`like the ${video} video`);
+    }, 1000);
+  });
+}
+
+function shareTheVideo(video) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(`share the ${video} video`);
+    }, 1000);
+  });
+}
+
+// Promises chaining
+
+// importantAction("Roadside Coder")
+//   .then((res) => {
+//     console.log(res);
+//     return likeTheVideo("Javascript Interview Questions");
+//   })
+//   .then((res) => {
+//     console.log(res);
+//     return shareTheVideo("Javascript Interview Questions");
+//   })
+//   .then((res) => {
+//     console.log(res);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+// Promise Combinator - helps us executes more than one promise at a time.
+// four types - 1) Promise.all
+/*
+// 1) - Promise.all
+
+// Promise.all([
+  importantAction("Roadside Coder"),
+  likeTheVideo("Javascript Interview Questions"),
+  shareTheVideo("Javascript Interview Questions"),
+])
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.error("Error: Promises failed", err);
+  });
+
+// 2)- Promise.race
+
+Promise.race([
+  importantAction("Roadside Coder"),
+  likeTheVideo("Javascript Interview Questions"),
+  shareTheVideo("Javascript Interview Questions"),
+])
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.error("Error: Promises failed", err);
+  });
+
+// 3) - Promise.allSettled
+
+Promise.allSettled([
+  importantAction("Roadside Coder"),
+  likeTheVideo("Javascript Interview Questions"),
+  shareTheVideo("Javascript Interview Questions"),
+])
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.error("Error: Promises failed", err);
+  });
+
+// 4) - Promise.any
+
+Promise.any([
+  importantAction("Roadside Coder"),
+  likeTheVideo("Javascript Interview Questions"),
+  shareTheVideo("Javascript Interview Questions"),
+])
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.error("Error: Promises failed", err);
+  });
+*/
+
+// Another Approach async / await
+
+console.log("stop");

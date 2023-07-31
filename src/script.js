@@ -1,90 +1,19 @@
-// var vs let vs const
-// scope
-
-// var a = 5;
-// console.log(a);
-// {
-//   var a = 5;
-// }
-// console.log(a);
-// {
-//   let b = 5;
-//   console.log(b);
-// }
-// {
-//   const c = 10;
-//   console.log(c);
-// }
-
-// shadowing
-
-// function test() {
-//   let a = "Hello";
-
-//   if (true) {
-//     let a = "Hi";
-//     console.log(a);
-//   }
-
-//   console.log(a);
-// }
-
-// test();
-
-// function test() {
-//   var a = "Hello";
-//   let b = "bye";
-
-//   if (true) {
-//     let a = "Hi";
-//     var b = "good bye"; // illegal shadowing
-//     console.log(a);
-//     console.log(b);
-//   }
-// }
-
-// test();
-
-// Declaration type question
-
-// var a;
-// var a;
-
-// let a;
-// let a;
-
-// let a;
-// {
-//   let a; // this is ok because of shadowing
-// }
-
-// Declaration without initialization
-// with var and let it is ok
-
-// const a = 13; // const has to initialized when declared.
-
-// Re-initialization
-
-// var a = 5;
-// a = 10;
-// let b = 5;
-// b = 6;
-// console.log(b, a);
-
-// const c = 8;
-// c = 9; // assignment to constant variable
-// // i.e; var and let can be updated but const can never be updated.
-
-// Hoisting
-
-// console.log(count);
-// var count = 1;
-// console.log(count);
-
-// console.log(a); // Refference Error (Temporal dead Zone)
-// // TDZ - the time between the declaration and initialization of let and const variables
-// let a = 10;
-// var b = 12;
+// var vs let vs const scope var a = 5; console.log(a); {   var a = 5; }
+// console.log(a); {   let b = 5;   console.log(b); } {   const c = 10;
+// console.log(c); } shadowing function test() {   let a = "Hello";   if (true)
+// {     let a = "Hi";     console.log(a);   }   console.log(a); } test();
+// function test() {   var a = "Hello";   let b = "bye";   if (true) {     let a
+// = "Hi";     var b = "good bye"; // illegal shadowing     console.log(a);
+// console.log(b);   } } test(); Declaration type question var a; var a; let a;
+// let a; let a; {   let a; // this is ok because of shadowing } Declaration
+// without initialization with var and let it is ok const a = 13; // const has
+// to initialized when declared. Re-initialization var a = 5; a = 10; let b = 5;
+// b = 6; console.log(b, a); const c = 8; c = 9; // assignment to constant
+// variable // i.e; var and let can be updated but const can never be updated.
+// Hoisting console.log(count); var count = 1; console.log(count);
+// console.log(a); // Refference Error (Temporal dead Zone) // TDZ - the time
+// between the declaration and initialization of let and const variables let a =
+// 10; var b = 12;
 
 /*
 function abc() {
@@ -97,31 +26,12 @@ function abc() {
 abc();
 */
 
-// Map, Filter and Reduce
-// Map
-
-// const nums = [1, 2, 3, 4, 5];
-
-// const multiplyThree = nums.map((num, i, arr) => {
-//   return num * 3 + i;
-// });
-// console.log(multiplyThree);
-
-// Filter
-
-// const moreThanTwo = nums.filter((num) => {
-//   return num > 2;
-// });
-// console.log(moreThanTwo);
-
-// Reduce
-
-// const sum = nums.reduce((acc, curr, i, arr) => {
-//   return acc + curr;
-// }, 0);
-// console.log(sum);
-
-// Polyfill for map()
+// Map, Filter and Reduce Map const nums = [1, 2, 3, 4, 5]; const multiplyThree
+// = nums.map((num, i, arr) => {   return num * 3 + i; });
+// console.log(multiplyThree); Filter const moreThanTwo = nums.filter((num) => {
+//   return num > 2; }); console.log(moreThanTwo); Reduce const sum =
+// nums.reduce((acc, curr, i, arr) => {   return acc + curr; }, 0);
+// console.log(sum); Polyfill for map()
 /*
 Array.prototype.myMap = function (cb) {
   let temp = [];
@@ -191,15 +101,11 @@ const forEachResult = arr.forEach((ele, i) => {
 console.log(mapResult, forEachResult, arr);
 */
 
-// map, filter and reduce - O/P based question
-// Question - 1 (print the name of each student in uppercase)
-
-// let students = [
-//   { name: "Piyush", rollNumber: 31, marks: 80 },
-//   { name: "Jenny", rollNumber: 15, marks: 69 },
-//   { name: "Kaushal", rollNumber: 16, marks: 35 },
-//   { name: "Dilpreet", rollNumber: 7, marks: 55 },
-// ];
+// map, filter and reduce - O/P based question Question - 1 (print the name of
+// each student in uppercase) let students = [   { name: "Piyush", rollNumber:
+// 31, marks: 80 },   { name: "Jenny", rollNumber: 15, marks: 69 },   { name:
+// "Kaushal", rollNumber: 16, marks: 35 },   { name: "Dilpreet", rollNumber: 7,
+// marks: 55 }, ];
 /*
 // using for loop
 let names = [];
@@ -1240,7 +1146,7 @@ const user = {
 };
 // setTimeout(user.logMessage, 1000); // logs nothing because setTimeout treats user.logMessage as a callback
 setTimeout(function () {
-  // avoid creating user.logMessage as a callback instead wrap inside a functon 
+  // avoid creating user.logMessage as a callback instead wrap inside a functon
   user.logMessage();
 }, 1000);
 
@@ -1446,7 +1352,7 @@ sub.then((res) => console.log(res));
 
 console.log("stop");
 */
-
+/*
 console.log("start");
 
 function importantAction(username) {
@@ -1472,27 +1378,14 @@ function shareTheVideo(video) {
     }, 1000);
   });
 }
-
-// Promises chaining
-
-// importantAction("Roadside Coder")
-//   .then((res) => {
-//     console.log(res);
-//     return likeTheVideo("Javascript Interview Questions");
-//   })
-//   .then((res) => {
-//     console.log(res);
-//     return shareTheVideo("Javascript Interview Questions");
-//   })
-//   .then((res) => {
-//     console.log(res);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
-
-// Promise Combinator - helps us executes more than one promise at a time.
-// four types - 1) Promise.all
+*/
+// Promises chaining importantAction("Roadside Coder")   .then((res) => {
+// console.log(res);     return likeTheVideo("Javascript Interview Questions");
+//  })   .then((res) => {     console.log(res);     return
+// shareTheVideo("Javascript Interview Questions");   })   .then((res) => {
+// console.log(res);   })   .catch((err) => {     console.log(err);   });
+// Promise Combinator - helps us executes more than one promise at a time. four
+// types - 1) Promise.all
 /*
 // 1) - Promise.all
 
@@ -1572,5 +1465,171 @@ console.log("stop");
 */
 
 // Ouput based question on Promises
-
+/*
 // Q1 - what's the output?
+
+console.log("start");
+
+const promise1 = new Promise((resolve, reject) => {
+  console.log(1);
+  resolve(2);
+});
+
+promise1.then((res) => {
+  console.log(res);
+});
+
+console.log("end");
+
+// Q2 - what's the output?
+
+console.log("start");
+
+const promise1 = new Promise((resolve, reject) => {
+  console.log(1);
+  // resolve(2);
+  console.log(3);
+});
+// if resolve is not given inside promise then below line is not going to executed
+promise1.then((res) => {
+  console.log(res);
+});
+
+console.log("end");
+
+// Q3 - what's the output
+
+console.log("Start");
+
+const fn = () =>
+  new Promise((resolve, reject) => {
+    console.log(1);
+    resolve("success");
+  });
+
+console.log("middle");
+
+fn().then((res) => {
+  console.log(res);
+});
+
+console.log("end");
+
+// Q4 - what's the output
+
+function job() {
+  return new Promise(function (resolve, reject) {
+    reject();
+  });
+}
+
+const promise = job();
+
+promise
+  .then(function () {
+    console.log("success 1");
+  })
+  .then(function () {
+    console.log("success 2");
+  })
+  .then(function () {
+    console.log("success 3");
+  })
+  .catch(function () {
+    console.log("Error 1");
+  })
+  .then(function () {
+    console.log("success 4");
+  });
+
+
+// Q5 - what's the output
+
+function job(state) {
+  return new Promise(function (resolve, reject) {
+    if (state) {
+      resolve("success");
+    } else {
+      reject("error");
+    }
+  });
+}
+
+const promise = job(true);
+
+promise
+  .then(function (data) {
+    console.log(data);   // success
+
+    return job(false);
+  })
+  .catch(function (error) {
+    console.log(error);    // error
+
+    return "Error caught";
+  })
+  .then(function (data) {
+    console.log(data);   // Error caught
+
+    return job(true);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+// Q6 - what's the output
+
+function job(state) {
+  return new Promise(function (resolve, reject) {
+    if (state) {
+      resolve("success");
+    } else {
+      reject("error");
+    }
+  });
+}
+
+const promise = job(true); // resolve("success")
+
+promise
+  .then(function (data) {
+    console.log(data); // success
+
+    return job(true);
+  })
+  .then(function (data) {
+    if (data !== "victory") {
+      throw "Defeat"; // here throwing error that means rejected promise
+    }
+    return job(true); // although here returning a resolve promise but it will not go inside it
+  })
+  .then(function (data) {
+    console.log(data);
+  })
+  .catch(function (error) {
+    console.log(error); // Defeat
+
+    return job(false);
+  })
+  .then(function (data) {
+    console.log(data); //
+
+    return job(true);
+  })
+  .catch(function (error) {
+    console.log(error); // error
+    return "Error caught";
+  })
+  .then(function (data) {
+    console.log(data); // Error caught
+    return new Error("test"); // this is not a rejected promise this in only there to confuse you it's a normal text
+  })
+  .then(function (data) {
+    console.log("Success:", data.message); // Success: test
+  })
+  .catch(function (data) {
+    console.log("Error:", data.message);
+  });
+*/
+
+// Q7 - Promise Chaining

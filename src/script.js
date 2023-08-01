@@ -1366,7 +1366,7 @@ function importantAction(username) {
 function likeTheVideo(video) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(`like the ${video} video`);
+      reject(`like the ${video} video`);
     }, 1000);
   });
 }
@@ -1386,10 +1386,10 @@ function shareTheVideo(video) {
 // console.log(res);   })   .catch((err) => {     console.log(err);   });
 // Promise Combinator - helps us executes more than one promise at a time. four
 // types - 1) Promise.all
-/*
-// 1) - Promise.all
 
-// Promise.all([
+// 1) - Promise.all
+/*
+Promise.all([
   importantAction("Roadside Coder"),
   likeTheVideo("Javascript Interview Questions"),
   shareTheVideo("Javascript Interview Questions"),
@@ -1442,7 +1442,8 @@ Promise.any([
   .catch((err) => {
     console.error("Error: Promises failed", err);
   });
-
+   */
+/*
 // Another Approach async / await
 const result = async () => {
   try {
@@ -1460,9 +1461,8 @@ const result = async () => {
 };
 
 result();
-
-console.log("stop");
 */
+// console.log("stop");
 
 // Ouput based question on Promises
 /*
@@ -1630,6 +1630,81 @@ promise
   .catch(function (data) {
     console.log("Error:", data.message);
   });
-*/
 
 // Q7 - Promise Chaining
+
+const firstPromise = new Promise((resolve, rejece) => {
+  resolve("First!");
+});
+
+const secondPromise = new Promise((resolve, rejece) => {
+  resolve(firstPromise);
+});
+
+secondPromise
+  .then((res) => {
+    return res;
+  })
+  .then((res) => console.log(res));
+
+// Q8 - Rewrite this example code using async/await instead of .then/catch
+
+async function loadJson(url) {
+  let response = await fetch(url);
+
+  if (response === 200) {
+    let json = response.json();
+    return json;
+  } else {
+    throw new Error(response.status);
+  }
+}
+
+loadJson("https://fakeurl.com/no-such-user.json").catch((err) =>
+  console.log(err)
+);
+
+// Q9 - solve promise recursively
+
+function importantAction(username) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(`Subscribe to ${username}`);
+    }, 1000);
+  });
+}
+
+function likeTheVideo(video) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(`like the ${video} video`);
+    }, 1000);
+  });
+}
+
+function shareTheVideo(video) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(`share the ${video} video`);
+    }, 1000);
+  });
+}
+
+function promiseRecursive(funcPromise) {
+  if (funcPromise.length === 0) return;
+
+  const currPromise = funcPromise.shift();
+
+  currPromise.then((res) => console.log(res)).catch((err) => console.log(err));
+
+  promiseRecursive(funcPromise);
+}
+
+promiseRecursive([
+  importantAction("RoadsideCoder"),
+  likeTheVideo("Javascript Interview Questions"),
+  shareTheVideo("Javascript Interview Questions"),
+]);
+*/
+
+// Q10 - Promise polyfill implementation (VVVI)

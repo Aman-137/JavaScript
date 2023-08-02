@@ -1706,7 +1706,7 @@ promiseRecursive([
   shareTheVideo("Javascript Interview Questions"),
 ]);
 */
-
+/*
 // Q10 - Promise polyfill implementation (VVVI)
 
 function PromisePolyFill(executor) {
@@ -1714,7 +1714,7 @@ function PromisePolyFill(executor) {
     onReject,
     isFullfilled = false,
     isRejected = false,
-    isCalled = false,
+    called = false,
     value;
 
   function resolve(val) {
@@ -1723,7 +1723,7 @@ function PromisePolyFill(executor) {
 
     if (typeof onResolve === "function") {
       onResolve(val);
-      isCalled = true;
+      called = true;
     }
   }
 
@@ -1751,7 +1751,7 @@ function PromisePolyFill(executor) {
     onReject = callback;
 
     if (isRejected && !isCalled) {
-      isCalled = true;
+      called = true;
       onReject(value);
     }
     return this;
@@ -1766,12 +1766,91 @@ function PromisePolyFill(executor) {
 
 const examplePromise = new PromisePolyFill((resolve, reject) => {
   setTimeout(() => {
-    reject(2);
+    resolve(2);
   }, 1000);
 });
 
 examplePromise
   .then((res) => {
-    console.log(res);
+    console.log(res); // 2
   })
   .catch((err) => console.error(err));
+
+PromisePolyFill.resolve = (val) => {
+  return new PromisePolyFill(function executor(resolve, reject) {
+    resolve(val);
+  });
+};
+
+PromisePolyFill.reject = (val) => {
+  return new PromisePolyFill(function executor(resolve, reject) {
+    reject(val);
+  });
+};
+*/
+
+// Q10 - Promise.all() Polyfill Implementaion
+
+function importantAction(username) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(`Subscribe to ${username}`);
+    }, 1000);
+  });
+}
+
+function likeTheVideo(video) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(`like the ${video} video`);
+    }, 1000);
+  });
+}
+
+function shareTheVideo(video) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(`share the ${video} video`);
+    }, 1000);
+  });
+}
+
+Promise.allPolyfill = (promises) => {
+  return new Promise((resolve, reject) => {
+    const results = [];
+
+    if (!promises.length) {
+      resolve(results);
+      return;
+    }
+
+    let pending = promises.length;
+
+    promises.forEach((promise, idx) => {
+      Promise.resolve(promise).then((res) => {
+        results[idx] = res;
+        pending--;
+
+        if (pending === 0) {
+          resolve(results);
+        }
+      }, reject);
+    });
+  });
+};
+
+Promise.allPolyfill([
+  importantAction("RoadsideCoder"),
+  likeTheVideo("Javascript Interview Questions"),
+  shareTheVideo("Javascript Interview Questions"),
+])
+  .then((res) => console.log(res))
+  .catch((err) => console.error("Failed:", err));
+
+// Promise.all([
+//   importantAction("RoadsideCoder"),
+//   likeTheVideo("Javascript Interview Questions"),
+//   shareTheVideo("Javascript Interview Questions"),
+// ])
+//   .then((res) => console.log(res))
+//   .catch((err) => console.error(err));

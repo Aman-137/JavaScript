@@ -1788,7 +1788,7 @@ PromisePolyFill.reject = (val) => {
   });
 };
 */
-
+/*
 // Q10 - Promise.all() Polyfill Implementaion
 
 function importantAction(username) {
@@ -1854,3 +1854,4 @@ Promise.allPolyfill([
 // ])
 //   .then((res) => console.log(res))
 //   .catch((err) => console.error(err));
+*/

@@ -1855,3 +1855,117 @@ Promise.allPolyfill([
 //   .then((res) => console.log(res))
 //   .catch((err) => console.error(err));
 */
+
+// JavaScript call, apply and bind and their Polyfills
+/*
+// Q1 - what is call?
+
+var obj = {
+  name: "Aman",
+};
+
+function sayHello(age, profession) {
+  return "Hello " + this.name + " is " + age + " and he is a " + profession;
+}
+
+console.log(sayHello.call(obj, 24, "software engineer"));
+
+// Q2 - what is apply?
+
+var obj = {
+  name: "Aman",
+};
+
+function sayHello(age, profession) {
+  return "Hello " + this.name + " is " + age + " and he is a " + profession;
+}
+
+console.log(sayHello.apply(obj, [24, "software engineer"]));
+
+// Q3 - what is bind?
+
+var obj = {
+  name: "Aman",
+};
+
+function sayHello(age, profession) {
+  return "Hello " + this.name + " is " + age + " and he is a " + profession;
+}
+
+const bindFunc = sayHello.bind(obj);
+
+console.log(bindFunc(24, "software engineer"));
+console.log(bindFunc(45, "Billionaire"));
+
+// Q4 - output  based questions
+
+const person = { name: "Aman" };
+
+function sayHi(age) {
+  return `${this.name} is ${age}`;
+}
+
+console.log(sayHi.call(person, 24));
+console.log(sayHi.bind(person, 24));
+
+// Q5 - call with function with object
+
+const age = 10;
+
+var person = {
+  name: "Aman",
+  age: 20,
+  getAge: function () {
+    return this.age;
+  },
+};
+
+var person2 = { age: 24 };
+console.log(person.getAge.call(person2)); // when call is there pointing to person2 obj then output is 24
+console.log(person.getAge.apply(person2));
+console.log(person.getAge.bind(person2)()); // we have to call it explicitly
+
+// Q6 - what is the output?
+
+var status = "😎";
+
+setTimeout(() => {
+  const status = "😍";
+
+  const data = {
+    status: "🥑",
+    getStatus() {
+      return this.status;
+    },
+  };
+
+  console.log(data.getStatus()); // 🥑
+  console.log(data.getStatus.call(this)); // 😎
+}, 0);
+
+
+// Q7 - call printAnimals such that it prints all animals in object
+
+const animals = [
+  {
+    species: "Lion",
+    name: "King",
+  },
+  {
+    species: "Whale",
+    name: "Queen",
+  },
+];
+
+function printAnimals(i) {
+  this.print = function () {
+    console.log("#" + i + " " + this.species + ": " + this.name);
+  };
+  this.print();
+}
+
+for (let i = 0; i < animals.length; i++) {
+  printAnimals.call(animals[i], i);
+}
+*/
+// Q8 -

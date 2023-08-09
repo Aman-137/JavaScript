@@ -1967,5 +1967,133 @@ function printAnimals(i) {
 for (let i = 0; i < animals.length; i++) {
   printAnimals.call(animals[i], i);
 }
+
+// Q8 - Append an array to another array
+
+const array = ["a", "b"];
+const element = [0, 1, 3];
+
+// array.push(element); // ['a', 'b', Array(3)]
+
+array.push.apply(array, element); // ['a', 'b', 0, 1, 3]
+console.log(array);
+
+// Q9 - Using apply to enhance Built-in functions
+
+// Find min/max number in an array
+const numbers = [5, 6, 2, 3, 7];
+
+// console.log(Math.max(numbers));// NaN
+
+console.log(Math.max.apply(null, numbers)); // 7 here null = context (object)
+console.log(Math.min.apply(null, numbers)); // 2
+
+// // Loop based approach
+// (max = -Infinity), (min = +Infinity);
+
+// for (let i = 0; i < numbers.length; i++) {
+//   if (numbers[i] > max) {
+//     max = numbers[i];
+//   }
+//   if (numbers[i] < min) {
+//     min = numbers[i];
+//   }
+// }
+
+// Q10 - Bound function
+
+function f() {
+  console.log(this);
+}
+
+let user = {
+  g: f.bind(null),
+};
+
+user.g();
+
+// Q11 - Bind chaining
+
+function f() {
+  console.log(this.name); // John (bind chaining doesn't exist)
+}
+
+f = f.bind({ name: "John" }).bind({ name: "Anne" });
+// a function bound by this bind key work can't be rebound
+f();
+
+
+// Q12 - Fix the line to make code work properly
+
+function checkPassword(success, failed) {
+  let password = prompt("Password?", "");
+  if (password === "Frontend Developer") success();
+  else failed();
+}
+
+let user = {
+  name: "Aman Kumar",
+
+  loginSuccessful() {
+    console.log(`${this.name} logged in`);
+  },
+
+  loginFailed() {
+    console.log(`${this.name} failed to log in`);
+  },
+};
+
+checkPassword(user.loginSuccessful.bind(user), user.loginFailed.bind(user));
+
+// Implicit Binding - Implicit binding occurs when a function is invoked with a specific context, and that context (the object to which the function belongs) is automatically determined by how the function is called.
+
+const person = {
+  name: "Aman",
+  greet: function () {
+    console.log(`hello, my name is ${this.name}`);
+  },
+};
+
+person.greet(); // output: hello, my name is Aman
+
+// Explicit Binding - Explicit binding occurs when you explicitly specify the context for a function using methods like call, apply, or bind.
+
+function greet() {
+  console.log(`hello, my name is ${this.name}`);
+}
+
+const person1 = {
+  name: "Aman",
+};
+
+const person2 = {
+  name: "Sunny",
+};
+
+// greet.call(person1);
+// greet.apply(person2);
+
+const greetPerson1 = greet.bind(person1);
+const greetPerson2 = greet.bind(person2);
+
+greetPerson1();
+greetPerson2();
 */
-// Q8 -
+
+// Q13 - Partial application for login function
+
+function checkPassword(ok, fail) {
+  let password = prompt("Password?", "");
+  if (password === "Frontend Developer") ok();
+  else fail();
+}
+
+let user = {
+  name: "Aman",
+
+  login(result) {
+    console.log(this.name + (result ? " login successful" : " login failed"));
+  },
+};
+
+checkPassword(user.login.bind(user, true), user.login.bind(user, false));

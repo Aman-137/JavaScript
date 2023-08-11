@@ -2078,7 +2078,6 @@ const greetPerson2 = greet.bind(person2);
 
 greetPerson1();
 greetPerson2();
-*/
 
 // Q13 - Partial application for login function
 
@@ -2097,3 +2096,22 @@ let user = {
 };
 
 checkPassword(user.login.bind(user, true), user.login.bind(user, false));
+
+//Q14 - Explicit Binding with Arrow Function
+
+const age = 10;
+
+var person = {
+  name: "Aman",
+  age: 20,
+  getAgeArrow: () => console.log(this.age),
+  getAge: function () {
+    console.log(this.age);
+  },
+};
+
+var person2 = { age: 24 };
+
+person.getAgeArrow.call(person2); // undefined (arrow function - this refers to window obj)
+person.getAge.call(person2); // 24
+*/

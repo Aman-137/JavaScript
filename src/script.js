@@ -2115,3 +2115,60 @@ var person2 = { age: 24 };
 person.getAgeArrow.call(person2); // undefined (arrow function - this refers to window obj)
 person.getAge.call(person2); // 24
 */
+
+// Q15 - Polyfill for Call method
+
+let car1 = {
+  color: "Red",
+  company: "Ferrari",
+};
+
+function purchaseCar(currency, price) {
+  console.log(
+    `I have purchased ${this.color} - ${this.company} car for ${currency}${price}`
+  );
+}
+/*
+// Polyfill for Call
+Function.prototype.myCall = function (context = {}, ...args) {
+  if (typeof this !== "function") {
+    throw new Error(this + "It's not callable");
+  }
+
+  context.fn = this;
+  context.fn(...args);
+};
+
+// Polyfill for Apply
+Function.prototype.myApply = function (context = {}, args = []) {
+  if (typeof this !== "function") {
+    throw new Error(this + "It's not callable");
+  }
+
+  if (!Array.isArray(args)) {
+    throw new Error("CreateListFromArrayLike called on non-object");
+  }
+
+  context.fn = this;
+  context.fn(...args);
+};
+*/
+// Polyfill for Bind
+Function.prototype.myBind = function (context = {}, ...args) {
+  if (typeof this !== "function") {
+    throw new Error(this + "cannot be bound as it's not callable");
+  }
+
+  context.fn = this;
+  return function (...newArgs) {
+    return context.fn(...args, ...newArgs);
+  };
+};
+
+// const newFunc = purchaseCar.bind(car1, "₹", 5000000);
+// console.log(newFunc());
+
+// purchaseCar.myCall(car1, "₹", 5000000);
+// purchaseCar.myApply(car1, ["₹", 5000000]);
+const newFunc = purchaseCar.myBind(car1, "₹");
+console.log(newFunc(5000000));

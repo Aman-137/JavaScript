@@ -2152,7 +2152,7 @@ Function.prototype.myApply = function (context = {}, args = []) {
   context.fn = this;
   context.fn(...args);
 };
-*/
+
 // Polyfill for Bind
 Function.prototype.myBind = function (context = {}, ...args) {
   if (typeof this !== "function") {
@@ -2172,3 +2172,26 @@ Function.prototype.myBind = function (context = {}, ...args) {
 // purchaseCar.myApply(car1, ["₹", 5000000]);
 const newFunc = purchaseCar.myBind(car1, "₹");
 console.log(newFunc(5000000));
+*/
+
+// Debouncing and Throttling in JavaScript
+
+// Q1 - Create a button UI and add debounce as follows =>
+//      --> Show "Button Pressed <X> Times" every time button is pressed
+//      --> Increase "Triggered <Y> Times" count after 800ms of debounce
+
+const btn = document.querySelector(".increment_btn");
+const btnPress = document.querySelector(".increment_pressed");
+const count = document.querySelector(".increment_count");
+
+var pressedCount = 0;
+var triggerCount = 0;
+
+const debouncedCount = _.debounce(() => {
+  count.innerHTML = ++triggerCount;
+}, 800);
+
+btn.addEventListener("click", () => {
+  btnPress.innerHTML = ++pressedCount;
+  debouncedCount();
+});

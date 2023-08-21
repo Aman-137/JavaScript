@@ -2219,7 +2219,6 @@ btn.addEventListener("click", () => {
   btnPress.innerHTML = ++pressedCount;
   throttledCount();
 });
-*/
 
 // Q3 - Create Debounce() Polyfill Implementation
 
@@ -2249,5 +2248,37 @@ btn.addEventListener("click", () => {
   btnPress.innerHTML = ++pressedCount;
   debouncedCount();
 });
-
+*/
 // Q4 - Create Throttle() Polyfill Implementation
+
+const btn = document.querySelector(".increment_btn");
+const btnPress = document.querySelector(".increment_pressed");
+const count = document.querySelector(".increment_count");
+
+var pressedCount = 0;
+var triggerCount = 0;
+
+// const start = new Date().getTime();
+
+const myThrottle = (cb, d) => {
+  let last = 0;
+
+  return function (...args) {
+    let now = new Date().getTime();
+    if (now - last < d) return;
+    last = now;
+    return cb(...args);
+  };
+};
+
+const throttledCount = myThrottle(() => {
+  count.innerHTML = ++triggerCount;
+}, 1000);
+
+btn.addEventListener("click", () => {
+  btnPress.innerHTML = pressedCount++;
+  // const now = new Date().getTime();
+  // const seconds = (now - start) / 1000;
+  // console.log(seconds.toFixed());
+  throttledCount();
+});

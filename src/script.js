@@ -2230,7 +2230,18 @@ const count = document.querySelector(".increment_count");
 var pressedCount = 0;
 var triggerCount = 0;
 
-const debouncedCount = _.debounce(() => {
+const myDebounce = (cb, d) => {
+  let timer;
+
+  return function (...args) {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      cb(...args);
+    }, d);
+  };
+};
+
+const debouncedCount = myDebounce(() => {
   count.innerHTML = ++triggerCount;
 }, 800);
 
@@ -2238,3 +2249,5 @@ btn.addEventListener("click", () => {
   btnPress.innerHTML = ++pressedCount;
   debouncedCount();
 });
+
+// Q4 - Create Throttle() Polyfill Implementation

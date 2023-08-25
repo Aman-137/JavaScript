@@ -2248,7 +2248,7 @@ btn.addEventListener("click", () => {
   btnPress.innerHTML = ++pressedCount;
   debouncedCount();
 });
-*/
+
 // Q4 - Create Throttle() Polyfill Implementation
 
 const btn = document.querySelector(".increment_btn");
@@ -2282,3 +2282,50 @@ btn.addEventListener("click", () => {
   // console.log(seconds.toFixed());
   throttledCount();
 });
+*/
+/*
+// Event Propagation in JavaScript
+
+// Q1 - What is Event Propagation?
+//  -> Propagation refers to how events travel through the Document Object Model (DOM) tree.
+
+/// Q2 - What is Event Bubbling?
+//  -> Event bubbling is a concept in JavaScript where an event that is triggered on a nested or inner element "bubbles up" through its parent elements in the DOM hierarchy
+
+const div = document.getElementById("div");
+const form = document.querySelector("form");
+const button = document.querySelector("button");
+
+div.addEventListener("click", function () {
+  alert("div");
+});
+button.addEventListener("click", function () {
+  alert("button");
+});
+form.addEventListener("click", function () {
+  alert("form");
+});
+
+// Q3 - event.target vs this.target vs event.currentTarget
+
+const div = document.getElementById("div");
+const form = document.querySelector("form");
+const button = document.querySelector("button");
+
+div.addEventListener("click", func);
+button.addEventListener("click", func);
+form.addEventListener("click", func);
+
+function func(event) {
+  alert(
+    "currentTarget = " +
+      event.currentTarget.tagName +
+      ", target = " +
+      event.target.tagName +
+      ", this = " +
+      this.tagName
+  );
+}
+*/
+
+// Q4 - What is Event Capturing / Trickling?

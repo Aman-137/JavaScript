@@ -2385,16 +2385,58 @@ form.addEventListener("click", function (e) {
 });
 // same goes with the capturing process
 // we just need to use the stopPropagation() method
-*/
 
 // Q6 - What is Event Deligation? (**VVI)
 
 document.querySelector(".products").addEventListener("click", (event) => {
   // console.log(event);
 
-  console.log(event.target.closest("SPAN"));
+  // console.log(event.target.closest("SPAN"));
 
   if (event.target.tagName === "SPAN") {
     window.location.href += "/" + event.target.className;
+  }
+});
+
+// Q7 - What's the output?
+
+const div = document.getElementById("div");
+const form = document.querySelector("form");
+const button = document.querySelector("button");
+
+div.addEventListener("click", function () {
+  alert("div");
+});
+button.addEventListener("click", function () {
+  alert("button");
+});
+form.addEventListener(
+  "click",
+  function () {
+    alert("form");
+  },
+  {
+    capture: true,
+  }
+);
+*/
+
+// Q7 - Create a Modal which closes by clicking on negative space?
+
+const container = document.querySelector(".modalContainer");
+const button = document.querySelector(".modalButton");
+
+button.addEventListener("click", () => {
+  toggleModal(true);
+});
+
+function toggleModal(toggle) {
+  container.style.display = toggle ? "flex" : "none";
+}
+
+container.addEventListener("click", (e) => {
+  // console.log(e.target.className);
+  if (e.target.className === "modalContainer") {
+    toggleModal(false);
   }
 });

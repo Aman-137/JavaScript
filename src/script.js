@@ -2326,6 +2326,75 @@ function func(event) {
       this.tagName
   );
 }
-*/
 
 // Q4 - What is Event Capturing / Trickling?
+
+const div = document.getElementById("div");
+const form = document.querySelector("form");
+const button = document.querySelector("button");
+
+div.addEventListener(
+  "click",
+  function () {
+    alert("div");
+  },
+  {
+    capture: true,
+  }
+);
+
+button.addEventListener(
+  "click",
+  function () {
+    alert("button");
+  },
+  {
+    capture: true,
+  }
+);
+
+form.addEventListener(
+  "click",
+  function () {
+    alert("form");
+  },
+  {
+    capture: true,
+  }
+);
+
+// Q5 - How to stop bubbling or capturing?
+
+const div = document.getElementById("div");
+const form = document.querySelector("form");
+const button = document.querySelector("button");
+
+div.addEventListener("click", function (e) {
+  // e.stopPropagation();
+  alert("div");
+});
+
+button.addEventListener("click", function (e) {
+  // e.stopPropagation();
+  alert("button");
+});
+
+form.addEventListener("click", function (e) {
+  e.stopPropagation();
+  alert("form");
+});
+// same goes with the capturing process
+// we just need to use the stopPropagation() method
+*/
+
+// Q6 - What is Event Deligation? (**VVI)
+
+document.querySelector(".products").addEventListener("click", (event) => {
+  // console.log(event);
+
+  console.log(event.target.closest("SPAN"));
+
+  if (event.target.tagName === "SPAN") {
+    window.location.href += "/" + event.target.className;
+  }
+});

@@ -21,3 +21,17 @@
   object-fit: cover;
   margin-bottom: 0;
 }
+
+.pagination {
+  padding: 10px;
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.pagination > span {
+  padding: 15px 20px;
+  border: 1px solid gray;
+  cursor: pointer;
+}
